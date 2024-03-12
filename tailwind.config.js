@@ -8,5 +8,6 @@ module.exports = {
       work: ["Work Sans", "sans-serif"],
     },
   },
+  darkMode: "selector",
   plugins: [],
 };

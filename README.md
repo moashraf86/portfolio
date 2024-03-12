@@ -29,13 +29,19 @@ cd your-repo
 npm install
 ```
 
+4. Start the Tailwind CLI build process
+
+````bash
+npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
+```
+
 ## Usage
 
 1. Start the application:
 
 ```bash
 npm start
-```
+````
 
 2. Open your browser and visit `http://localhost:3000` to view the application.
 
