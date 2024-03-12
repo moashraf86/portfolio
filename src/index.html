@@ -21,17 +21,18 @@
   <body class="dark:bg-slate-900">
     <!-- Header -->
     <header class="py-4 border-b border-slate-200 dark:border-slate-800">
-      <div class="lg:container mx-auto px-4">
-        <nav class="flex items-center justify-between">
-          <!-- Logo -->
-          <div class="flex gap-4 items-center">
-            <img src="../assets/avatar.png" alt="avatar" />
-            <span
-              class="text-sm font-poppins font-semibold text-slate-950 dark:text-slate-50"
-              >Mohamed Ashraf</span
-            >
-          </div>
-          <ul class="flex items-center gap-8">
+      <div class="lg:container mx-auto px-4 flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex gap-4 items-center">
+          <img src="../assets/avatar.png" alt="avatar" />
+          <span
+            class="text-sm font-poppins font-semibold text-slate-950 dark:text-slate-50"
+            >Mohamed Ashraf</span
+          >
+        </div>
+        <!-- Page Navigation -->
+        <nav class="hidden md:flex items-center justify-between flex-grow">
+          <ul class="flex items-center gap-8 ml-auto">
             <li class="active">
               <a
                 href="#home"
@@ -61,7 +62,7 @@
               >
             </li>
           </ul>
-          <ul class="flex items-center gap-4 lg:gap-8">
+          <ul class="flex items-center gap-4 lg:gap-8 mr-4 ml-auto">
             <li>
               <a href="#linkedIn">
                 <i
@@ -91,18 +92,22 @@
                 </svg>
               </a>
             </li>
-            <li>
-              <a
-                href="#reviews"
-                class="flex px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-800"
-              >
-                <i
-                  class="ri-moon-fill text-gray-500 dark:text-slate-600 hover:text-slate-950 dark:hover:text-slate-50"
-                ></i>
-              </a>
-            </li>
           </ul>
         </nav>
+        <!-- Theme Toggler -->
+        <button
+          onclick="document.documentElement.classList.toggle('dark')"
+          class="flex px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-800"
+        >
+          <i
+            name="sun"
+            class="ri-sun-fill text-gray-500 dark:text-slate-600 hover:text-slate-950 dark:hover:text-slate-50"
+          ></i>
+          <i
+            name="moon"
+            class="ri-moon-fill text-gray-500 dark:text-slate-600 hover:text-slate-950 dark:hover:text-slate-50"
+          ></i>
+        </button>
       </div>
     </header>
     <!-- Header -->

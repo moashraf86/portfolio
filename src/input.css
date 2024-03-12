@@ -30,3 +30,15 @@ i,
 i:before {
   @apply text-xl;
 }
+
+i[name="sun"] {
+  @apply hidden;
+}
+
+.dark i[name="sun"] {
+  @apply block;
+}
+
+.dark i[name="moon"] {
+  display: none;
+}
