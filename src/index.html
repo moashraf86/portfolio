@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Work+Sans:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Work+Sans:ital@0;1&display=swap"
       rel="stylesheet"
     />
     <!-- Remix Icons -->
@@ -20,7 +20,9 @@
   </head>
   <body class="dark:bg-slate-900">
     <!-- Header -->
-    <header class="py-4 border-b border-slate-200 dark:border-slate-800">
+    <header
+      class="sticky top-0 z-40 backdrop-blur py-4 border-b bg-transparent border-slate-200 dark:border-slate-800"
+    >
       <div class="lg:container mx-auto px-4 flex items-center justify-between">
         <!-- Logo -->
         <div class="flex gap-4 items-center">
@@ -31,8 +33,11 @@
           >
         </div>
         <!-- Page Navigation -->
-        <nav class="hidden md:flex items-center justify-between flex-grow">
-          <ul class="flex items-center gap-8 ml-auto">
+        <nav
+          id="nav"
+          class="hidden absolute top-[80px] left-4 right-4 bg-slate-100 dark:bg-slate-800 rounded-lg p-5 flex-col gap-5 md:flex items-center justify-between flex-grow md:static md:top-0 md:bg-inherit md:dark:bg-inherit md:p-0 md:flex-row collapsed"
+        >
+          <ul class="flex items-center gap-8 md:ml-auto">
             <li class="active">
               <a
                 href="#home"
@@ -62,7 +67,7 @@
               >
             </li>
           </ul>
-          <ul class="flex items-center gap-4 lg:gap-8 mr-4 ml-auto">
+          <ul class="flex items-center gap-4 lg:gap-8 md:mr-4 md:ml-auto">
             <li>
               <a href="#linkedIn">
                 <i
@@ -92,21 +97,36 @@
                 </svg>
               </a>
             </li>
+            <li>
+              <!-- Theme Toggler -->
+              <button
+                onclick="document.documentElement.classList.toggle('dark')"
+                class="flex"
+              >
+                <i
+                  name="sun"
+                  class="ri-sun-fill text-gray-500 dark:text-slate-600 hover:text-slate-950 dark:hover:text-slate-50"
+                ></i>
+                <i
+                  name="moon"
+                  class="ri-moon-fill text-gray-500 dark:text-slate-600 hover:text-slate-950 dark:hover:text-slate-50"
+                ></i>
+              </button>
+            </li>
           </ul>
         </nav>
-        <!-- Theme Toggler -->
+
+        <!-- Menu Toggler -->
         <button
-          onclick="document.documentElement.classList.toggle('dark')"
-          class="flex px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-800"
+          onclick="toggleMenu()"
+          class="flex md:hidden px-2 py-1 rounded-lg border text-gray-500 dark:text-slate-600 border-slate-200 dark:border-slate-800"
         >
-          <i
-            name="sun"
-            class="ri-sun-fill text-gray-500 dark:text-slate-600 hover:text-slate-950 dark:hover:text-slate-50"
-          ></i>
-          <i
-            name="moon"
-            class="ri-moon-fill text-gray-500 dark:text-slate-600 hover:text-slate-950 dark:hover:text-slate-50"
-          ></i>
+          <div id="menu-icon">
+            <i class="ri-menu-line"></i>
+          </div>
+          <div id="close-icon" class="hidden">
+            <i class="ri-close-line"></i>
+          </div>
         </button>
       </div>
     </header>
@@ -118,27 +138,30 @@
         class="lg:container mx-auto flex flex-col items-center gap-6 text-center pt-[120px] px-4"
       >
         <h1
-          class="text-[64px] font-extrabold leading-none text-slate-950 dark:text-slate-50"
+          class="text-5xl md:text-6xl font-extrabold leading-none text-slate-950 dark:text-slate-50"
         >
           Hi! 🖐 I'm Mohamed
         </h1>
         <p
           class="font-work text-lg text-gray-600 dark:text-slate-500 tracking-tight leading-6"
         >
-          Front-End developer based in Egypt <br />
-          passionate about building accessible web app <br />
+          Front-End developer based in Egypt <br class="hidden md:block" />
+          passionate about building accessible web app
+          <br class="hidden : md:block" />
           that user loves
         </p>
-        <div class="flex items-center gap-4">
+        <div
+          class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
+        >
           <a
             href="#"
-            class="px-4 py-2 rounded-md border border-slate-900 dark:border-slate-50 bg-slate-900 text-slate-50 dark:bg-slate-50 dark:text-slate-900 text-base font-semibold"
+            class="px-4 py-2 rounded-md border border-slate-900 dark:border-slate-50 bg-slate-900 text-white dark:bg-slate-50 dark:text-slate-900 text-base font-semibold hover:bg-slate-700 dark:hover:bg-slate-100"
           >
             Get In Touch
           </a>
           <a
             href="#"
-            class="flex gap-3 items-center px-4 py-2 rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-950 dark:text-slate-50 text-base font-semibold"
+            class="flex gap-3 items-center px-4 py-2 rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 text-slate-950 dark:text-slate-50 dark:shadow-inset text-base font-semibold hover:bg-slate-100 dark:hover:bg-slate-600"
             >Download CV <i class="ri-download-line"></i>
           </a>
         </div>
@@ -294,7 +317,7 @@
           class="flex items-center justify-between flex-wrap text-center border border-r-0 border-l-0 border-slate-200 dark:border-slate-800"
         >
           <li
-            class="flex-grow py-7 border-r border-b border-slate-200 dark:border-slate-800 w-[50%] lg:w-auto lg:border-b-0"
+            class="flex-grow py-7 sm:border-r border-b border-slate-200 dark:border-slate-800 w-full sm:w-[50%] lg:w-auto lg:border-b-0"
           >
             <h3
               class="text-3xl font-extrabold text-slate-950 dark:text-slate-50 mb-2"
@@ -308,7 +331,7 @@
             </p>
           </li>
           <li
-            class="flex-grow py-7 border-r border-b border-slate-200 dark:border-slate-800 w-[50%] lg:w-auto lg:border-b-0"
+            class="flex-grow py-7 sm:border-r border-b border-slate-200 dark:border-slate-800 w-full sm:w-[50%] lg:w-auto lg:border-b-0"
           >
             <h3
               class="text-3xl font-extrabold text-slate-950 dark:text-slate-50 mb-2"
@@ -322,7 +345,7 @@
             </p>
           </li>
           <li
-            class="flex-grow py-7 border-r border-slate-200 dark:border-slate-800 w-[50%] lg:w-auto"
+            class="flex-grow py-7 sm:border-r border-b sm:border-b-0 border-slate-200 dark:border-slate-800 w-full sm:w-[50%] lg:w-auto"
           >
             <h3
               class="text-3xl font-extrabold text-slate-950 dark:text-slate-50 mb-2"
@@ -336,7 +359,7 @@
             </p>
           </li>
           <li
-            class="flex-grow py-7 border-r border-slate-200 dark:border-slate-800 w-[50%] lg:w-auto"
+            class="flex-grow py-7 sm:border-r border-slate-200 dark:border-slate-800 w-full sm:w-[50%] lg:w-auto"
           >
             <h3
               class="text-3xl font-extrabold text-slate-950 dark:text-slate-50 mb-2"
@@ -351,6 +374,614 @@
           </li>
         </ul>
       </section>
+      <!-- Projects -->
+      <section
+        id="projects"
+        class="flex flex-col gap-12 lg:container mx-auto px-4 pt-24"
+      >
+        <h2
+          class="text-4xl md:text-5xl text-center font-bold text-slate-950 dark:text-slate-50"
+        >
+          Projects
+        </h2>
+        <div
+          class="sm:flex flex-wrap lg:flex-nowrap items-center justify-between"
+        >
+          <!-- Project 1 -->
+          <div
+            class="sm:w-[50%] lg:w-auto sm:px-2 md:px-4 mb-6 sm:mb-4 md:mb-8"
+          >
+            <div
+              class="p-5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-800 dark:shadow-inset"
+            >
+              <img
+                src="https://source.unsplash.com/400x400/?web"
+                alt="Web Project"
+                class="w-full h-[250px] object-cover rounded-xl mb-6"
+              />
+              <h3
+                class="text-xl md:text-2xl font-semibold mb-3 text-slate-950 dark:text-slate-200"
+              >
+                Web Project
+              </h3>
+              <p class="text-md text-gray-500 dark:text-slate-400 mb-3">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+              <ul class="flex items-center gap-4 mb-6">
+                <li
+                  class="font-poppins font-medium text-xs rounded-full py-2 px-4 bg-slate-100 text-gray-500 dark:bg-slate-700 dark:text-slate-400"
+                >
+                  HTML
+                </li>
+                <li
+                  class="font-poppins font-medium text-xs rounded-full py-2 px-4 bg-slate-100 text-gray-500 dark:bg-slate-700 dark:text-slate-400"
+                >
+                  CSS
+                </li>
+                <li
+                  class="font-poppins font-medium text-xs rounded-full py-2 px-4 bg-slate-100 text-gray-500 dark:bg-slate-700 dark:text-slate-400"
+                >
+                  JavaScript
+                </li>
+              </ul>
+              <a
+                href="#"
+                class="flex gap-3 items-center text-sm font-poppins font-medium text-slate-900 dark:text-slate-100"
+                >Live Preview <i class="ri-arrow-right-up-line"></i
+              ></a>
+            </div>
+          </div>
+          <!-- Project 2 -->
+          <div
+            class="sm:w-[50%] lg:w-auto sm:px-2 md:px-4 mb-6 sm:mb-4 md:mb-8"
+          >
+            <div
+              class="p-5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-800 dark:shadow-inset"
+            >
+              <img
+                src="https://source.unsplash.com/400x400/?web"
+                alt="Web Project"
+                class="w-full h-[250px] object-cover rounded-xl mb-6"
+              />
+              <h3
+                class="text-xl md:text-2xl font-semibold mb-3 text-slate-950 dark:text-slate-200"
+              >
+                Web Project
+              </h3>
+              <p class="text-md text-gray-500 dark:text-slate-400 mb-3">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+              <ul class="flex items-center gap-4 mb-6">
+                <li
+                  class="font-poppins font-medium text-xs rounded-full py-2 px-4 bg-slate-100 text-gray-500 dark:bg-slate-700 dark:text-slate-400"
+                >
+                  HTML
+                </li>
+                <li
+                  class="font-poppins font-medium text-xs rounded-full py-2 px-4 bg-slate-100 text-gray-500 dark:bg-slate-700 dark:text-slate-400"
+                >
+                  CSS
+                </li>
+                <li
+                  class="font-poppins font-medium text-xs rounded-full py-2 px-4 bg-slate-100 text-gray-500 dark:bg-slate-700 dark:text-slate-400"
+                >
+                  JavaScript
+                </li>
+              </ul>
+              <a
+                href="#"
+                class="flex gap-3 items-center text-sm font-poppins font-medium text-slate-900 dark:text-slate-100"
+                >Live Preview <i class="ri-arrow-right-up-line"></i
+              ></a>
+            </div>
+          </div>
+          <!-- Project 3 -->
+          <div
+            class="sm:w-[50%] lg:w-auto sm:px-2 md:px-4 mb-6 sm:mb-4 md:mb-8"
+          >
+            <div
+              class="p-5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-800 dark:shadow-inset"
+            >
+              <img
+                src="https://source.unsplash.com/400x400/?web"
+                alt="Web Project"
+                class="w-full h-[250px] object-cover rounded-xl mb-6"
+              />
+              <h3
+                class="text-xl md:text-2xl font-semibold mb-3 text-slate-950 dark:text-slate-200"
+              >
+                Web Project
+              </h3>
+              <p class="text-md text-gray-500 dark:text-slate-400 mb-3">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+              <ul class="flex items-center gap-4 mb-6">
+                <li
+                  class="font-poppins font-medium text-xs rounded-full py-2 px-4 bg-slate-100 text-gray-500 dark:bg-slate-700 dark:text-slate-400"
+                >
+                  HTML
+                </li>
+                <li
+                  class="font-poppins font-medium text-xs rounded-full py-2 px-4 bg-slate-100 text-gray-500 dark:bg-slate-700 dark:text-slate-400"
+                >
+                  CSS
+                </li>
+                <li
+                  class="font-poppins font-medium text-xs rounded-full py-2 px-4 bg-slate-100 text-gray-500 dark:bg-slate-700 dark:text-slate-400"
+                >
+                  JavaScript
+                </li>
+              </ul>
+              <a
+                href="#"
+                class="flex gap-3 items-center text-sm font-poppins font-medium text-slate-900 dark:text-slate-100"
+                >Live Preview <i class="ri-arrow-right-up-line"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Experience -->
+      <section
+        id="experience"
+        class="flex flex-col gap-12 lg:container mx-auto px-4 pt-24"
+      >
+        <h2
+          class="text-4xl md:text-5xl text-center font-bold text-slate-950 dark:text-slate-50"
+        >
+          Experience
+        </h2>
+        <!-- timeLine -->
+        <div
+          class="relative md:after:absolute md:after:content-[''] md:after:top-[30px] md:after:right-[50%] md:after:bottom-[80px] md:after:border-r-2 md:after:mr-[-1px] md:after:border-dashed md:after:border-slate-200 md:dark:after:border-slate-800 md:after:h-auto md:after:w-0 md:after:z-10"
+        >
+          <!-- Box 1 -->
+          <div class="relative md:pl-[50%]">
+            <div
+              class="relative flex items-start gap-4 md:max-w-sm md:ms-6 mb-6 p-5 bg-slate-50 dark:bg-slate-800 rounded-xl md:after:absolute md:after:content-[''] md:after:w-[15px] md:after:h-[15px] md:after:rounded-full md:after:bg-slate-200 md:after:top-[28px] md:after:-left-8 md:after:z-20 md:dark:after:bg-slate-800 dark:shadow-inset"
+            >
+              <img src="../assets/aqwas.svg" alt="Aqwas" />
+              <div>
+                <h3
+                  class="text-xl md:text-2xl font-semibold text-slate-950 dark:text-slate-50"
+                >
+                  Front-end Developer
+                </h3>
+                <p
+                  class="font-poppins font-normal text-slate-900 dark:text-slate-300"
+                >
+                  Company Name . Full time
+                </p>
+                <p class="text-gray-500 dark:text-slate-500">
+                  Jan 2019 - Present
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Box 2 -->
+          <div class="relative flex md:justify-end md:pr-[50%]">
+            <div
+              class="relative flex flex-grow items-start gap-4 md:max-w-sm md:me-6 mb-6 p-5 bg-slate-50 dark:bg-slate-800 rounded-xl md:after:absolute md:after:content-[''] md:after:w-[15px] md:after:h-[15px] md:after:rounded-full md:after:bg-slate-200 md:after:top-[28px] md:after:left-auto md:after:-right-8 md:after:z-20 md:dark:after:bg-slate-800 dark:shadow-inset"
+            >
+              <img src="../assets/aqwas.svg" alt="Aqwas" />
+              <div>
+                <h3
+                  class="text-xl md:text-2xl font-semibold text-slate-950 dark:text-slate-50"
+                >
+                  Front-end Developer
+                </h3>
+                <p
+                  class="font-poppins font-normal text-slate-900 dark:text-slate-300"
+                >
+                  Company Name . Full time
+                </p>
+                <p class="text-gray-500 dark:text-slate-500">
+                  Jan 2019 - Present
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Box 3 -->
+          <div class="relative md:pl-[50%]">
+            <div
+              class="relative flex items-start gap-4 md:max-w-sm md:ms-6 mb-6 md:mb-0 p-5 bg-slate-50 dark:bg-slate-800 rounded-xl md:after:absolute md:after:content-[''] md:after:w-[15px] md:after:h-[15px] md:after:rounded-full md:after:bg-slate-200 md:after:top-[28px] md:after:-left-8 md:after:z-20 md:dark:after:bg-slate-800 dark:shadow-inset"
+            >
+              <img src="../assets/aqwas.svg" alt="Aqwas" />
+              <div>
+                <h3
+                  class="text-xl md:text-2xl font-semibold text-slate-950 dark:text-slate-50"
+                >
+                  Front-end Developer
+                </h3>
+                <p
+                  class="font-poppins font-normal text-slate-900 dark:text-slate-300"
+                >
+                  Company Name . Full time
+                </p>
+                <p class="text-gray-500 dark:text-slate-500">
+                  Jan 2019 - Present
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Reviews -->
+      <section
+        id="reviews"
+        class="relative flex flex-col gap-12 lg:container mx-auto pt-24"
+      >
+        <h2
+          class="text-4xl md:text-5xl text-center font-bold text-slate-950 dark:text-slate-50"
+        >
+          Reviews
+        </h2>
+        <div
+          id="reviews-grid"
+          class="grid grid-cols-1 gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3 max-h-[30rem] p-4 overflow-hidden"
+        >
+          <!-- review -->
+          <a href="#">
+            <figure
+              class="relative flex flex-col gap-4 bg-slate-50 rounded-xl p-5 dark:bg-slate-800 dark:shadow-inset"
+            >
+              <figcaption class="flex items-start gap-3">
+                <img src="../assets/avatar.png" alt="avatar" />
+                <div>
+                  <h4
+                    class="text-lg font-semibold text-slate-900 dark:text-slate-200 leading-tight"
+                  >
+                    John Doe
+                  </h4>
+                  <p
+                    class="text-sm text-slate-500 dark:text-slate-400 font-normal"
+                  >
+                    Upwork Client
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote>
+                <p class="text-slate-700 dark:text-slate-400 font-normal">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </blockquote>
+            </figure>
+          </a>
+          <!-- review -->
+          <a href="#">
+            <figure
+              class="relative flex flex-col gap-4 bg-slate-50 rounded-xl p-5 dark:bg-slate-800 dark:shadow-inset"
+            >
+              <figcaption class="flex items-start gap-3">
+                <img src="../assets/avatar.png" alt="avatar" />
+                <div>
+                  <h4
+                    class="text-lg font-semibold text-slate-900 dark:text-slate-200 leading-tight"
+                  >
+                    John Doe
+                  </h4>
+                  <p
+                    class="text-sm text-slate-500 dark:text-slate-400 font-normal"
+                  >
+                    Upwork Client
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote>
+                <p class="text-slate-700 dark:text-slate-400 font-normal">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </blockquote>
+            </figure>
+          </a>
+          <!-- review -->
+          <a href="#">
+            <figure
+              class="relative flex flex-col gap-4 bg-slate-50 rounded-xl p-5 dark:bg-slate-800 dark:shadow-inset"
+            >
+              <figcaption class="flex items-start gap-3">
+                <img src="../assets/avatar.png" alt="avatar" />
+                <div>
+                  <h4
+                    class="text-lg font-semibold text-slate-900 dark:text-slate-200 leading-tight"
+                  >
+                    John Doe
+                  </h4>
+                  <p
+                    class="text-sm text-slate-500 dark:text-slate-400 font-normal"
+                  >
+                    Upwork Client
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote>
+                <p class="text-slate-700 dark:text-slate-400 font-normal">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </blockquote>
+            </figure>
+          </a>
+          <!-- review -->
+          <a href="#">
+            <figure
+              class="relative flex flex-col gap-4 bg-slate-50 rounded-xl p-5 dark:bg-slate-800 dark:shadow-inset"
+            >
+              <figcaption class="flex items-start gap-3">
+                <img src="../assets/avatar.png" alt="avatar" />
+                <div>
+                  <h4
+                    class="text-lg font-semibold text-slate-900 dark:text-slate-200 leading-tight"
+                  >
+                    John Doe
+                  </h4>
+                  <p
+                    class="text-sm text-slate-500 dark:text-slate-400 font-normal"
+                  >
+                    Upwork Client
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote>
+                <p class="text-slate-700 dark:text-slate-400 font-normal">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </blockquote>
+            </figure>
+          </a>
+          <!-- review -->
+          <a href="#">
+            <figure
+              class="relative flex flex-col gap-4 bg-slate-50 rounded-xl p-5 dark:bg-slate-800 dark:shadow-inset"
+            >
+              <figcaption class="flex items-start gap-3">
+                <img src="../assets/avatar.png" alt="avatar" />
+                <div>
+                  <h4
+                    class="text-lg font-semibold text-slate-900 dark:text-slate-200 leading-tight"
+                  >
+                    John Doe
+                  </h4>
+                  <p
+                    class="text-sm text-slate-500 dark:text-slate-400 font-normal"
+                  >
+                    Upwork Client
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote>
+                <p class="text-slate-700 dark:text-slate-400 font-normal">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </blockquote>
+            </figure>
+          </a>
+          <!-- review -->
+          <a href="#">
+            <figure
+              class="relative flex flex-col gap-4 bg-slate-50 rounded-xl p-5 dark:bg-slate-800 dark:shadow-inset"
+            >
+              <figcaption class="flex items-start gap-3">
+                <img src="../assets/avatar.png" alt="avatar" />
+                <div>
+                  <h4
+                    class="text-lg font-semibold text-slate-900 dark:text-slate-200 leading-tight"
+                  >
+                    John Doe
+                  </h4>
+                  <p
+                    class="text-sm text-slate-500 dark:text-slate-400 font-normal"
+                  >
+                    Upwork Client
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote>
+                <p class="text-slate-700 dark:text-slate-400 font-normal">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </blockquote>
+            </figure>
+          </a>
+          <!-- review -->
+          <a href="#">
+            <figure
+              class="relative flex flex-col gap-4 bg-slate-50 rounded-xl p-5 dark:bg-slate-800 dark:shadow-inset"
+            >
+              <figcaption class="flex items-start gap-3">
+                <img src="../assets/avatar.png" alt="avatar" />
+                <div>
+                  <h4
+                    class="text-lg font-semibold text-slate-900 dark:text-slate-200 leading-tight"
+                  >
+                    John Doe
+                  </h4>
+                  <p
+                    class="text-sm text-slate-500 dark:text-slate-400 font-normal"
+                  >
+                    Upwork Client
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote>
+                <p class="text-slate-700 dark:text-slate-400 font-normal">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </blockquote>
+            </figure>
+          </a>
+          <!-- review -->
+          <a href="#">
+            <figure
+              class="relative flex flex-col gap-4 bg-slate-50 rounded-xl p-5 dark:bg-slate-800 dark:shadow-inset"
+            >
+              <figcaption class="flex items-start gap-3">
+                <img src="../assets/avatar.png" alt="avatar" />
+                <div>
+                  <h4
+                    class="text-lg font-semibold text-slate-900 dark:text-slate-200 leading-tight"
+                  >
+                    John Doe
+                  </h4>
+                  <p
+                    class="text-sm text-slate-500 dark:text-slate-400 font-normal"
+                  >
+                    Upwork Client
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote>
+                <p class="text-slate-700 dark:text-slate-400 font-normal">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </blockquote>
+            </figure>
+          </a>
+          <!-- review -->
+          <a href="#">
+            <figure
+              class="relative flex flex-col gap-4 bg-slate-50 rounded-xl p-5 dark:bg-slate-800 dark:shadow-inset"
+            >
+              <figcaption class="flex items-start gap-3">
+                <img src="../assets/avatar.png" alt="avatar" />
+                <div>
+                  <h4
+                    class="text-lg font-semibold text-slate-900 dark:text-slate-200 leading-tight"
+                  >
+                    John Doe
+                  </h4>
+                  <p
+                    class="text-sm text-slate-500 dark:text-slate-400 font-normal"
+                  >
+                    Upwork Client
+                  </p>
+                </div>
+              </figcaption>
+              <blockquote>
+                <p class="text-slate-700 dark:text-slate-400 font-normal">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </blockquote>
+            </figure>
+          </a>
+        </div>
+        <!-- See More -->
+        <div
+          class="inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-white pt-32 pb-8 pointer-events-none dark:from-slate-900 absolute"
+        >
+          <button
+            onclick="seeMore(event)"
+            type="button"
+            class="relative bg-slate-900 hover:bg-slate-700 text-sm text-white font-semibold h-12 px-6 rounded-lg flex items-center dark:bg-slate-700 dark:hover:bg-slate-600 pointer-events-auto closed"
+          >
+            Show more
+          </button>
+        </div>
+      </section>
     </main>
+    <footer
+      class="flex items-center justify-between flex-wrap py-7 lg:container mx-auto px-4 mt-16"
+    >
+      <span
+        class="text-sm font-poppins font-semibold text-slate-950 dark:text-slate-50"
+        >Mohamed Ashraf</span
+      >
+      <ul class="flex items-center gap-4 lg:gap-8">
+        <li>
+          <a href="#linkedIn">
+            <i
+              class="ri-linkedin-fill text-gray-500 dark:text-slate-600 hover:text-slate-950 dark:hover:text-slate-50"
+            ></i>
+          </a>
+        </li>
+        <li>
+          <a href="#github">
+            <i
+              class="ri-github-fill text-gray-500 dark:text-slate-600 hover:text-slate-950 dark:hover:text-slate-50"
+            ></i>
+          </a>
+        </li>
+        <li>
+          <a href="#upwork">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 50 50"
+              width="20px"
+              height="20px"
+              class="fill-gray-500 dark:fill-slate-600 hover:fill-slate-950 dark:hover:fill-slate-50"
+            >
+              <path
+                d="M 1 9 C 0.448 9 0 9.448 0 10 L 0 24.115234 C 0 30.276234 4.6829844 35.631469 10.833984 35.980469 C 16.730984 36.314469 21.747875 32.176391 22.796875 26.650391 C 23.366875 27.420391 23.94625 28.135969 24.53125 28.792969 L 21.001953 43.771484 C 20.932953 44.069484 21.002406 44.380094 21.191406 44.621094 C 21.382406 44.859094 21.670563 45 21.976562 45 L 27.095703 45 C 27.559703 45 27.959406 44.687328 28.066406 44.236328 C 28.687406 41.615328 29.660969 37.508156 30.542969 33.785156 L 31.453125 34.3125 C 33.618125 35.4335 35.815 36 38 36 C 45.192 36 50.926 29.641 49.875 22.25 C 49.179 17.354 45.414078 13.318344 40.580078 12.277344 C 34.951078 11.064344 29.525359 13.949141 27.193359 18.744141 C 27.193359 18.744141 26.934562 19.318578 26.726562 19.892578 C 25.076563 17.046578 24.107609 14.094078 23.599609 11.955078 C 23.414609 11.175078 23.137469 9.762875 23.105469 9.671875 C 22.966469 9.268875 22.589109 9 22.162109 9 L 17 9 C 16.448 9 16 9.448 16 10 L 16 24.300781 C 16 26.649781 14.287219 28.750516 11.949219 28.978516 C 9.2672187 29.240516 7 27.13 7 24.5 L 7 10 C 7 9.448 6.552 9 6 9 L 1 9 z M 38 19 C 40.757 19 43 21.243 43 24 C 43 26.757 40.757 29 38 29 C 35.775 29 33.713531 27.658281 32.269531 26.488281 C 32.796531 24.263281 33.15025 22.773047 33.15625 22.748047 C 33.72425 20.541047 35.717 19 38 19 z"
+              />
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </footer>
+    <!-- Custom Script -->
+    <script>
+      /**
+       * See More Reviews
+       */
+      function seeMore(e) {
+        if (e.target.classList.contains("closed")) {
+          document
+            .getElementById("reviews-grid")
+            .classList.remove("max-h-[30rem]");
+          e.target.textContent = "See Less";
+          e.target.classList.remove("closed");
+        } else {
+          document
+            .getElementById("reviews-grid")
+            .classList.add("max-h-[30rem]");
+          e.target.textContent = "See More";
+          e.target.classList.add("closed");
+        }
+      }
+      /**
+       * Mobile Menu
+       */
+      function toggleMenu() {
+        document.getElementById("nav").style.display === "flex"
+          ? closeMenu()
+          : openMenu();
+      }
+      //Open Menu
+      function openMenu() {
+        document.getElementById("nav").style.display = "flex";
+        document.getElementById("menu-icon").classList.add("hidden");
+        document.getElementById("close-icon").classList.remove("hidden");
+        setTimeout(() => {
+          document.getElementById("nav").classList.remove("collapsed");
+        });
+      }
+
+      //Close Menu
+      function closeMenu() {
+        document.getElementById("nav").classList.add("collapsed");
+        document.getElementById("menu-icon").classList.remove("hidden");
+        document.getElementById("close-icon").classList.add("hidden");
+        setTimeout(() => {
+          document.getElementById("nav").style.display = "none";
+        }, 300);
+      }
+      // close menu on cliking any link inside
+      document.querySelectorAll("nav ul li").forEach(function (e) {
+        e.addEventListener("click", function (e) {
+          closeMenu();
+        });
+      });
+    </script>
   </body>
 </html>

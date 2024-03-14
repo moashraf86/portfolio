@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  transition: all 0.15s linear;
+}
+
 body {
   @apply font-work;
 }
@@ -11,7 +15,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-poppins;
+  @apply font-poppins leading-none;
 }
 
 a {
@@ -41,4 +45,11 @@ i[name="sun"] {
 
 .dark i[name="moon"] {
   display: none;
+}
+
+@media screen and (max-width: 767px) {
+  nav.collapsed {
+    @apply opacity-0 -mt-5  origin-top transition-all;
+    transform: rotateX(-45deg);
+  }
 }

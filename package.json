@@ -1,4 +1,14 @@
 {
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "My portfolio",
+  "author": {
+    "name": "Mohamed Ashraf",
+    "email": "dev.mohammed.ashraf@gmail.com"
+  },
+  "scripts": {
+    "build": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch"
+  },
   "devDependencies": {
     "tailwindcss": "^3.4.1"
   }
