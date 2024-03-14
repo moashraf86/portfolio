@@ -15,7 +15,7 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./output.css" />
+    <link rel="stylesheet" href="./src/output.css" />
     <title>My Portfolio</title>
   </head>
   <body class="dark:bg-slate-900">
@@ -977,11 +977,21 @@
         }, 300);
       }
       // close menu on cliking any link inside
-      document.querySelectorAll("nav ul li").forEach(function (e) {
-        e.addEventListener("click", function (e) {
-          closeMenu();
+      if (window.innerWidth < 767) {
+        document.querySelectorAll("nav ul li").forEach(function (e) {
+          e.addEventListener("click", function (e) {
+            closeMenu();
+          });
         });
-      });
+      }
+
+      window.onresize = function () {
+        if (window.innerWidth > 767) {
+          openMenu();
+        } else {
+          closeMenu();
+        }
+      };
     </script>
   </body>
 </html>
