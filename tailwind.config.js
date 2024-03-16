@@ -11,6 +11,7 @@ module.exports = {
     fontFamily: {
       poppins: ["Poppins", "sans-serif"],
       work: ["Work Sans", "sans-serif"],
+      caveat: ["Caveat", "cursive"],
     },
   },
   darkMode: "selector",
