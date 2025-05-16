@@ -7,49 +7,9 @@
 }
 
 body {
-  @apply font-work;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-poppins leading-none;
+  @apply font-outfit;
 }
 
-a {
-  @apply font-poppins font-medium;
-}
-
-li.active a {
-  @apply text-slate-950;
-}
-
-.dark li.active a {
-  @apply text-slate-50;
-}
-
-i,
-i:before {
-  @apply text-xl;
-}
-
-i[name="sun"] {
-  @apply hidden;
-}
-
-.dark i[name="sun"] {
-  @apply block;
-}
-
-.dark i[name="moon"] {
+[x-cloak] {
   display: none;
-}
-
-@media screen and (max-width: 767px) {
-  nav.collapsed {
-    @apply opacity-0 -mt-5  origin-top transition-all;
-    transform: rotateX(-45deg);
-  }
 }

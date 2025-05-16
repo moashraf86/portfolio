@@ -7,7 +7,7 @@
     "email": "dev.mohammed.ashraf@gmail.com"
   },
   "scripts": {
-    "build": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch"
+    "watch": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.1"
