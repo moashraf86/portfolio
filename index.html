@@ -15,24 +15,29 @@
 	<title>My Portfolio</title>
 </head>
 
-<body class="bg-[#F9f9f9]">
-	<main class="max-w-3xl mx-auto py-24 px-4">
+<body>
+	<main class="max-w-3xl mx-auto py-24 px-4" x-data="{ showTabs: false }"
+		x-init="setTimeout(() => { showTabs = true }, 1500)">
 		<!-- Intro -->
 		<section class="space-y-6 items-start gap-4 max-w-[420px]">
-			<div class="inline-flex border-2 border-white rounded-2xl drop-shadow-md overflow-hidden">
-				<img src="./assets/avatar.avif" alt="avatar" class="w-[60px] h-[60px] object-cover" loading="eager" />
+			<div
+				class="inline-flex border-2 border-white rounded-2xl drop-shadow-md overflow-hidden animate-in fade-in slide-in-from-bottom-10 duration-500 ease-in-out">
+				<img src=" ./assets/avatar.avif" alt="avatar" class="w-[60px] h-[60px] object-cover" loading="eager" />
 			</div>
-			<div class="space-y-6">
+			<div class="space-y-6" x-data="{ showIcons: false }" x-init="setTimeout(() => { showIcons = true }, 1000)">
 				<div class="space-y-3">
-					<h1 class="text-xl md:text-2xl font-medium">Hey, I'm Mohamed Ashraf.</h1>
-					<p class="text-base md:text-lg font-normal text-gray-500">
-						Frontend developer passionate about building accessible,
-						high-quality web applications that users love to use.
+					<h1 x-data x-animate-words="'Hey, I\'m Mohamed Ashraf.'"
+						class="text-xl md:text-2xl font-medium whitespace-pre-wrap">
+					</h1>
+					<p x-data
+						x-animate-words="'Frontend developer passionate about building accessible, high-quality web applications that users love to use.'"
+						class="text-base md:text-lg font-normal text-gray-500 whitespace-pre-wrap">
 					</p>
 				</div>
-				<ul class="flex items-center gap-4">
-					<li class="relative" x-data="{ tooltip: false }" x-on:mouseover="tooltip = true"
-						x-on:mouseleave="tooltip = false">
+				<ul class="flex items-center gap-4" x-cloak>
+					<li x-show="showIcons" class="relative" x-data="{ tooltip: false }" x-on:mouseover="tooltip = true"
+						x-on:mouseleave="tooltip = false"
+						x-bind:class="{'animate-in fade-in slide-in-from-bottom-5 duration-200 ease-in-out': showIcons}">
 						<a href="https://github.com/moashraf86" target="_blank">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
 								<path
@@ -51,8 +56,9 @@
 							Github
 						</span>
 					</li>
-					<li class="relative" x-data="{ tooltip: false }" x-on:mouseover="tooltip = true"
-						x-on:mouseleave="tooltip = false">
+					<li class="relative" x-show="showIcons" x-data="{ tooltip: false }" x-on:mouseover="tooltip = true"
+						x-on:mouseleave="tooltip = false"
+						x-bind:class="{'animate-in fade-in slide-in-from-bottom-5 duration-300 ease-in-out': showIcons}">
 						<a href="https://github.com/moashraf86" target="_blank">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
 								<path
@@ -71,8 +77,9 @@
 							LinkedIn
 						</span>
 					</li>
-					<li class="relative" x-data="{ tooltip: false }" x-on:mouseover="tooltip = true"
-						x-on:mouseleave="tooltip = false">
+					<li class="relative" x-show="showIcons" x-data="{ tooltip: false }" x-on:mouseover="tooltip = true"
+						x-on:mouseleave="tooltip = false"
+						x-bind:class="{'animate-in fade-in slide-in-from-bottom-5 duration-400 ease-in-out': showIcons}">
 						<a href="https://github.com/moashraf86" target="_blank">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
 								stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -93,8 +100,9 @@
 							Send Email
 						</span>
 					</li>
-					<li class="relative" x-data="{ tooltip: false }" x-on:mouseover="tooltip = true"
-						x-on:mouseleave="tooltip = false">
+					<li class="relative" x-show="showIcons" x-data="{ tooltip: false }" x-on:mouseover="tooltip = true"
+						x-on:mouseleave="tooltip = false"
+						x-bind:class="{'animate-in fade-in slide-in-from-bottom-5 duration-500 ease-in-out': showIcons}">
 						<a href="https://github.com/moashraf86" target="_blank">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
 								stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -119,7 +127,294 @@
 			</div>
 		</section>
 		<!-- Intro -->
+
+		<!-- Tabs -->
+		<section class="mt-16" x-data="{ openTab: 1 }" x-show="showTabs" x-cloak
+			x-transition:enter="transition ease-in-out duration-300" x-transition:enter-start="opacity-0 translate-y-8"
+			x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150">
+			<nav>
+				<!-- Tab buttons -->
+				<ul class="flex items-center gap-2">
+					<li>
+						<button x-on:click="openTab = 1"
+							class="text-sm text-gray-500 hover:bg-black hover:text-white rounded-full px-3 py-1 antialiased"
+							x-bind:class="{'bg-black text-white': openTab === 1}">Projects</button>
+					</li>
+					<li>
+						<button x-on:click="openTab = 2"
+							class="text-sm text-gray-500 hover:bg-black hover:text-white rounded-full px-3 py-1 antialiased"
+							x-bind:class="{'bg-black text-white': openTab === 2}">Experience</button>
+					</li>
+					<li>
+						<button x-on:click="openTab = 3"
+							class="text-sm text-gray-500 hover:bg-black hover:text-white rounded-full px-3 py-1 antialiased"
+							x-bind:class="{'bg-black text-white': openTab === 3}">Clients</button>
+					</li>
+					<li>
+						<button x-on:click="openTab = 4"
+							class="text-sm text-gray-500 hover:bg-black hover:text-white rounded-full px-3 py-1 antialiased"
+							x-bind:class="{'bg-black text-white': openTab === 4}">Stack</button>
+					</li>
+					<li>
+						<button x-on:click="openTab = 5"
+							class="text-sm text-gray-500 hover:bg-black hover:text-white rounded-full px-3 py-1 antialiased"
+							x-bind:class="{'bg-black text-white': openTab === 5}">Connect</button>
+					</li>
+				</ul>
+			</nav>
+			<!-- Tab content -->
+			<div class="mt-10">
+				<!-- Projects -->
+				<div x-show="openTab === 1" x-transition:enter="transition ease-out duration-200"
+					x-transition:enter-start="scale-80 translate-y-4" x-transition:enter-end="scale-100 translate-y-0" x-cloak>
+					<div class="space-y-10">
+						<!-- Project 1 -->
+						<div
+							class="relative grid grid-cols-1 md:grid-cols-2 p-4 md:p-8 bg-white rounded-xl shadow-card gap-8 items-center overflow-hidden">
+							<!-- Project Info -->
+							<div class="space-y-8">
+								<div class="inline-flex items-center justify-center size-9 rounded-xl bg-white p-2 shadow-card">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+										stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+										class="lucide lucide-file-text-icon lucide-file-text">
+										<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+										<path d="M14 2v4a2 2 0 0 0 2 2h4" />
+										<path d="M10 9H8" />
+										<path d="M16 13H8" />
+										<path d="M16 17H8" />
+									</svg>
+								</div>
+								<div class="space-y-4">
+									<h3 class="text-lg font-medium text-gray-900">CVMaster</h3>
+									<p class="text-sm text-gray-500">AI-powered resume builder that helps users create professional
+										resumes
+										with smart suggestions to improve their content..</p>
+								</div>
+								<a href="#" target="_blank"
+									class="inline-block text-sm text-gray-900 hover:text-gray-50 bg-white hover:bg-gray-900 border border-gray-900 rounded-full px-3 py-1 transition-colors antialiased">
+									Visit App
+								</a>
+							</div>
+							<!-- Project Image -->
+							<div class="relative h-full overflow-visible">
+								<div
+									class="md:absolute -right-[90px] top-0 border border-gray-200 rounded-xl overflow-hidden aspect-video md:aspect-[1.25/1] shadow-cover">
+									<img src="./assets/cvmaster-cover.png" alt="cvmaster-cover"
+										class="object-cover object-center md:object-left-top w-full h-full" loading="lazy" width="2940"
+										height="1672" />
+								</div>
+							</div>
+						</div>
+						<!-- Project 2 -->
+						<div
+							class="relative grid grid-cols-1 md:grid-cols-2 p-4 md:p-8 bg-white rounded-xl shadow-card gap-8 items-center overflow-hidden">
+							<!-- Project Info -->
+							<div class="space-y-8">
+								<div
+									class="inline-flex items-center justify-center size-9 rounded-xl bg-white p-2 shadow-card text-lg text-[#f55036] font-black">
+									//
+								</div>
+								<div class="space-y-4">
+									<h3 class="text-lg font-medium text-gray-900">GroqBot</h3>
+									<p class="text-sm text-gray-500">AI-powered chatbot that helps users with their queries and provides
+										smart suggestions to improve their experience.</p>
+								</div>
+								<a href="#" target="_blank"
+									class="inline-block text-sm text-gray-900 hover:text-gray-50 bg-white hover:bg-gray-900 border border-gray-900 rounded-full px-3 py-1 transition-colors antialiased">
+									Visit App
+								</a>
+							</div>
+							<!-- Project Image -->
+							<div class="relative h-full overflow-visible">
+								<div
+									class="md:absolute -right-[90px] top-0 border border-gray-200 rounded-xl overflow-hidden aspect-[1.25/1] shadow-cover">
+									<img src="./assets/GroqBot-cover.png" alt="GroqBot-cover"
+										class="object-cover object-center md:object-left-top w-full h-full" loading="lazy" width="2940"
+										height="1672" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Experience -->
+				<div x-show="openTab === 2" x-transition:enter="transition ease-out duration-200"
+					x-transition:enter-start="scale-80 translate-y-4" x-transition:enter-end="scale-100 translate-y-0" x-cloak>
+					<div class="relative pl-10">
+						<!-- Vertical timeline -->
+						<div class="absolute left-5 top-6 bottom-10 w-px bg-transparent border-r-2 border-dashed border-gray-300">
+						</div>
+						<div class="relative flex justify-between items-start w-full gap-2 pr-2 py-4 md:pr-4 !pl-0">
+							<!-- Bullet item -->
+							<div
+								class="w-4 h-4 bg-gray-900 rounded-full absolute -left-[27px] top-5 flex items-center justify-center">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+									stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
+									class="lucide lucide-dot-icon lucide-dot">
+									<circle cx="12.1" cy="12.1" r="1" />
+								</svg>
+							</div>
+							<div class="space-y-.5">
+								<h4 class="font-medium">Frontend Developer</h4>
+								<div class="text-xs font-normal text-gray-800">
+									<a href="#" class="hover:underline underline-offset-1">Aqwas</a> - Full-time
+								</div>
+							</div>
+							<div class="space-y-.5 text-end">
+								<p class="text-xs font-normal text-gray-800">Jul 2023 - Present</p>
+								<p class="text-xs font-normal text-gray-800">Riyadh, KSA - Remotely</p>
+							</div>
+						</div>
+						<div class="relative flex justify-between items-start w-full gap-2 pr-2 py-4 md:pr-4 !pl-0">
+							<!-- Bullet item -->
+							<div class="w-4 h-4 bg-gray-300 rounded-full absolute -left-[27px] top-5">
+							</div>
+							<div class="space-y-.5">
+								<h4 class="font-medium">Frontend Developer</h4>
+								<div class="text-xs font-normal text-gray-800">
+									<a href="#" class="hover:underline underline-offset-1">MotorsCity</a> - Full-time
+								</div>
+							</div>
+							<div class="space-y-.5 text-end">
+								<p class="text-xs font-normal text-gray-800">Jun 2022 - Jul 2023</p>
+								<p class="text-xs font-normal text-gray-800">Riyadh, KSA </p>
+							</div>
+						</div>
+						<div class="relative flex justify-between items-start w-full gap-2 pr-2 py-4 md:pr-4 !pl-0">
+							<!-- Bullet item -->
+							<div class="w-4 h-4 bg-gray-300 rounded-full absolute -left-[27px] top-5"></div>
+							<div class="space-y-.5">
+								<h4 class="font-medium">Frontend Developer</h4>
+								<div class="text-xs font-normal text-gray-800">
+									<a href="#" class="hover:underline underline-offset-1">YourMedia Inc.</a> - Full-time
+								</div>
+							</div>
+							<div class="space-y-.5 text-end">
+								<p class="text-xs font-normal text-gray-800">Mar 2020 - Jul 2023</p>
+								<p class="text-xs font-normal text-gray-800">Montreal, Canada</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Clients -->
+				<div x-show="openTab === 3" x-cloak>
+					<p>Clients content goes here...</p>
+				</div>
+				<div x-show="openTab === 4" x-cloak>
+					<p>Stack content goes here...</p>
+				</div>
+				<div x-show="openTab === 5" x-cloak>
+					<p>Connect content goes here...</p>
+				</div>
+			</div>
+		</section>
 	</main>
+
+	<!-- animate-words.js -->
+	<script>
+		document.addEventListener('alpine:init', () => {
+			Alpine.directive('animate-words', (el, { expression }, { evaluateLater, effect, cleanup }) => {
+				const getContent = evaluateLater(expression);
+				let timeoutIds = []; // Track timeouts for cleanup
+
+				effect(() => {
+					getContent((value) => {
+						// Clear previous timeouts and content
+						timeoutIds.forEach(id => clearTimeout(id));
+						timeoutIds = [];
+						el.innerHTML = '';
+
+						if (!value || typeof value !== 'string') return;
+
+						const startDelay = 500;
+						const delayStep = 60;
+						let wordIndex = 0; // Track actual words for delays
+
+						const wordsWithSpaces = value.split(/(\s+)/);
+
+						wordsWithSpaces.forEach(part => {
+							const span = document.createElement('span');
+							span.textContent = part;
+							span.className = 'inline-block opacity-0 blur-sm transition-all duration-300 ease-linear';
+
+							if (part.trim()) {
+								const delay = startDelay + (wordIndex * delayStep);
+								wordIndex++; // Only increment for actual words
+								const timeoutId = setTimeout(() => {
+									span.classList.remove('opacity-0', 'blur-sm');
+									span.classList.add('opacity-100', 'blur-none');
+								}, delay);
+								timeoutIds.push(timeoutId);
+							} else {
+								span.classList.remove('opacity-0', 'blur-sm');
+								span.classList.add('opacity-100', 'blur-none');
+							}
+
+							el.appendChild(span);
+						});
+					});
+				});
+
+				// Cleanup timeouts when element is removed
+				cleanup(() => timeoutIds.forEach(id => clearTimeout(id)));
+			});
+		});
+	</script>
+	<script>
+		document.addEventListener('alpine:init', () => {
+			Alpine.data('scrollbarFix', () => ({
+				bodyStyle: '',
+
+				handleScrollbar() {
+					const hasScrollbar = document.documentElement.scrollHeight > document.documentElement.clientHeight;
+					const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+					this.bodyStyle = hasScrollbar
+						? ''
+						: `padding-right: ${scrollbarWidth}px`;
+				},
+			}));
+
+			// Optional: apply it globally
+			Alpine.effect(() => {
+				const rootHasScrollbar = document.documentElement.scrollHeight > document.documentElement.clientHeight;
+				const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+				if (!rootHasScrollbar) {
+					document.body.style.paddingRight = `${scrollbarWidth}px`;
+				} else {
+					document.body.style.paddingRight = '';
+				}
+			});
+		});
+	</script>
+
+	<script>
+		document.addEventListener('alpine:init', () => {
+			Alpine.data('tabs', () => ({
+				openTab: 1,
+
+				setTab(tab) {
+					this.openTab = tab;
+					this.handleScrollbar();
+				},
+
+				handleScrollbar() {
+					this.$nextTick(() => {
+						const doc = document.documentElement;
+						const hasScrollbar = doc.scrollHeight > doc.clientHeight;
+						const scrollbarWidth = window.innerWidth - doc.clientWidth;
+
+						document.body.style.paddingRight = hasScrollbar ? '' : `${scrollbarWidth}px`;
+					});
+				},
+
+				init() {
+					this.handleScrollbar();
+					window.addEventListener('resize', this.handleScrollbar);
+				}
+			}));
+		});
+	</script>
 </body>
 
 </html>

@@ -5,9 +5,12 @@
 * {
   transition: all 0.15s linear;
 }
+html {
+  scrollbar-gutter: stable both-edges;
+}
 
 body {
-  @apply font-outfit;
+  @apply font-outfit min-h-dvh bg-[#F9F9F9];
 }
 
 [x-cloak] {
