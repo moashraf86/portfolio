@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 * {
-  transition: all 0.15s linear;
+  @apply box-border focus-visible:outline-1 focus-visible:outline-gray-900 focus-visible:outline-offset-4 antialiased;
 }
+
 html {
   scrollbar-gutter: stable both-edges;
 }
