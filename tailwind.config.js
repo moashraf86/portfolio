@@ -24,6 +24,9 @@ module.exports = {
       cover:
         "rgba(0, 0, 0, 0.03) -7px -5px 16px 0px, rgba(0, 0, 0, 0.03) 0px 17px 11px 0px",
     },
+    dropShadow: {
+      icon: "0 5px 15px rgba(0, 0, 0, 0.1)",
+    },
     fontFamily: {
       outfit: ["Outfit", "sans-serif"],
     },
