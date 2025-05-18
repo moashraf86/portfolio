@@ -1,54 +1,71 @@
-# Project Name
+# My Portfolio
 
-A brief description of your project.
+A modern, responsive personal portfolio showcasing my projects, skills, and contact information. Built with HTML, Tailwind CSS, and Alpine.js.
+
+![Portfolio Screenshot](https://res.cloudinary.com/daswys0i8/image/upload/v1747594378/protfolio-screenshot_oyrxrn.png)
 
 ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Features](#features)
 - [Contributing](#contributing)
 - [License](#license)
 
 ## Installation
 
+To set up this project locally:
+
 1. Clone the repository:
 
-```bash
-git clone https://github.com/your-username/your-repo.git
-```
+   ```bash
+   git clone https://github.com/moashraf86/portfolio.git
+   ```
 
 2. Navigate to the project directory:
 
-```bash
-cd your-repo
-```
+   ```bash
+   cd portfolio
+   ```
 
 3. Install the dependencies:
 
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
-4. Start the Tailwind CLI build process
+4. Start the Tailwind CSS build process:
 
-````bash
-npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
-```
+   ```bash
+   npx run watch
+   ```
 
 ## Usage
 
-1. Start the application:
+1. Start a local server (optional, or just open `index.html` directly in your browser):
 
-```bash
-npm start
-````
+   ```bash
+   npm run start
+   ```
 
-2. Open your browser and visit `http://localhost:3000` to view the application.
+2. Open your browser and navigate to:
 
-## Contributing
+   ```
+   http://localhost:3000
+   ```
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please create a new issue or submit a pull request.
+3. Explore the portfolio, which includes:
+   - Projects
+   - Experience
+   - Clients
+   - Tech Stack
+   - Contact Information
+   - Links to external profiles (GitHub, LinkedIn, etc.)
 
-## License
+## Features
 
-This project is licensed under the [MIT License](LICENSE).
+- 💻 Fully responsive design
+- 🎨 Built with Tailwind CSS
+- ⚡ Fast and lightweight
+- 📱 Mobile-friendly UI
+- 🌐 Links to external profiles (GitHub, LinkedIn, etc.)
