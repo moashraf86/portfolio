@@ -4,13 +4,44 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Mohamed Ashraf - Frontend developer</title>
+	<meta name="keywords"
+		content="Mohamed Ashraf, Front-End Developer, React, Next.js, TailwindCSS, Web Development, Portfolio">
+	<meta name="description"
+		content="I’m Mohamed Ashraf, a Front-End Developer skilled in React, Next.js, and TailwindCSS. I create fast, responsive, and accessible web interfaces with a focus on clean design and user experience. Explore my projects and skills in modern web development.">
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://moashraf86.github.io/portfolio/" />
+	<meta property="og:title" content="Mohamed Ashraf - Frontend developer" />
+	<meta property="og:description"
+		content="I’m Mohamed Ashraf, a Front-End Developer skilled in React, Next.js, and TailwindCSS. I create fast, responsive, and accessible web interfaces with a focus on clean design and user experience. Explore my projects and skills in modern web development." />
+	<meta property="og:image"
+		content="https://res.cloudinary.com/daswys0i8/image/upload/v1747673407/og-image_vtmjn9.svg" />
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:url" content="https://moashraf86.github.io/portfolio/" />
+	<meta property="twitter:title" content="Mohamed Ashraf - Frontend developer" />
+	<meta property="twitter:description"
+		content="I’m Mohamed Ashraf, a Front-End Developer skilled in React, Next.js, and TailwindCSS. I create fast, responsive, and accessible web interfaces with a focus on clean design and user experience. Explore my projects and skills in modern web development." />
+	<meta property="twitter:image"
+		content="https://res.cloudinary.com/daswys0i8/image/upload/v1747673407/og-image_vtmjn9.svg" />
+	<link rel="canonical" href="https://moashraf86.github.io/portfolio/" />
+
+	<!-- Favicon -->
+	<link rel="apple-touch-icon" sizes="180x180"
+		href="https://res.cloudinary.com/daswys0i8/image/upload/v1747673819/apple-touch.png">
+	<link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/daswys0i8/image/upload/v1747673805/favicon.svg">
+
 	<!-- Google Font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
 	<link rel="stylesheet" href="./src/output.css" />
+
 	<script src="//unpkg.com/alpinejs" defer></script>
-	<title>Mohamed Ashraf - Frontend developer</title>
 </head>
 
 <body>
@@ -137,13 +168,13 @@
 
 			<nav aria-label="Tabs">
 				<!-- Tab buttons -->
-				<ul role="tablist" class="flex items-center flex-wrap gap-2">
+				<ul role="tablist" class="flex items-center flex-wrap gap-1 sm:gap-2">
 					<li role="presentation">
 						<button id="tab-projects" x-on:click="openTab = 1"
 							x-on:keydown.arrow-right.prevent="openTab = openTab < 5 ? openTab + 1 : 1"
 							x-on:keydown.arrow-left.prevent="openTab = openTab > 1 ? openTab - 1 : 5" role="tab"
 							aria-controls="panel-projects" :aria-selected="openTab === 1"
-							class="text-sm text-zinc-500 rounded-full px-3 py-1 transition-colors duration-200"
+							class="text-xs sm:text-sm text-zinc-500 rounded-full px-3 py-1 transition-colors duration-200"
 							x-bind:class="{'bg-zinc-900 !text-zinc-50': openTab === 1}">Projects</button>
 					</li>
 					<li role="presentation">
@@ -151,7 +182,7 @@
 							x-on:keydown.arrow-right.prevent="openTab = openTab < 5 ? openTab + 1 : 1"
 							x-on:keydown.arrow-left.prevent="openTab = openTab > 1 ? openTab - 1 : 5" role="tab"
 							aria-controls="panel-experience" :aria-selected="openTab === 2"
-							class="text-sm text-zinc-500 rounded-full px-3 py-1 transition-colors duration-200"
+							class="text-xs sm:text-sm text-zinc-500 rounded-full px-3 py-1 transition-colors duration-200"
 							x-bind:class="{'bg-zinc-900 !text-zinc-50': openTab === 2}">Experience</button>
 					</li>
 					<li role="presentation">
@@ -159,7 +190,7 @@
 							x-on:keydown.arrow-right.prevent="openTab = openTab < 5 ? openTab + 1 : 1"
 							x-on:keydown.arrow-left.prevent="openTab = openTab > 1 ? openTab - 1 : 5" role="tab"
 							aria-controls="panel-clients" :aria-selected="openTab === 3"
-							class="text-sm text-zinc-500 rounded-full px-3 py-1 transition-colors duration-200"
+							class="text-xs sm:text-sm text-zinc-500 rounded-full px-3 py-1 transition-colors duration-200"
 							x-bind:class="{'bg-zinc-900 !text-zinc-50': openTab === 3}">Clients</button>
 					</li>
 					<li role="presentation">
@@ -167,7 +198,7 @@
 							x-on:keydown.arrow-right.prevent="openTab = openTab < 5 ? openTab + 1 : 1"
 							x-on:keydown.arrow-left.prevent="openTab = openTab > 1 ? openTab - 1 : 5" role="tab"
 							aria-controls="panel-stack" :aria-selected="openTab === 4"
-							class="text-sm text-zinc-500 rounded-full px-3 py-1 transition-colors duration-200"
+							class="text-xs sm:text-sm text-zinc-500 rounded-full px-3 py-1 transition-colors duration-200"
 							x-bind:class="{'bg-zinc-900 !text-zinc-50': openTab === 4}">Stack</button>
 					</li>
 					<li role="presentation">
@@ -175,7 +206,7 @@
 							x-on:keydown.arrow-right.prevent="openTab = openTab < 5 ? openTab + 1 : 1"
 							x-on:keydown.arrow-left.prevent="openTab = openTab > 1 ? openTab - 1 : 5" role="tab"
 							aria-controls="panel-connect" :aria-selected="openTab === 5"
-							class="text-sm text-zinc-500 rounded-full px-3 py-1 transition-colors duration-200"
+							class="text-xs sm:text-sm text-zinc-500 rounded-full px-3 py-1 transition-colors duration-200"
 							x-bind:class="{'bg-zinc-900 !text-zinc-50': openTab === 5}">Connect</button>
 					</li>
 				</ul>
@@ -191,14 +222,14 @@
 					<div class="space-y-10">
 						<template x-for="project in projectsList" :key="project.name">
 							<div
-								class="relative grid grid-cols-1 md:grid-cols-2 p-4 md:p-8 bg-white rounded-xl shadow-card gap-8 items-center overflow-hidden">
+								class="relative grid grid-cols-1 md:grid-cols-2 p-6  md:p-8 bg-white rounded-xl shadow-card gap-8 items-center overflow-hidden">
 								<!-- Project Info -->
 								<div class="space-y-8">
 									<img :src="project.icon" :alt="project.name + ' icon'" width="35" height="35"
 										x-bind:class="{'drop-shadow-icon': project.shadow}">
 									<div class="space-y-2.5">
 										<h3 class="text-xl font-medium text-zinc-900" x-text="project.name"></h3>
-										<p class="text-sm text-zinc-500" x-text="project.description"></p>
+										<p class="text-zinc-500" x-text="project.description"></p>
 									</div>
 									<a :href="project.url.link" x-text="project.url.text" target="_blank" rel="noopener noreferrer"
 										class="inline-block text-sm text-zinc-900 hover:text-zinc-50 bg-white hover:bg-zinc-900 border border-zinc-900 rounded-full px-3 py-1 transition-colors antialiased"
@@ -224,14 +255,17 @@
 					x-transition:enter="transition transform opacity ease-in-out duration-500"
 					x-transition:enter-start="opacity-0 scale-95 translate-y-2"
 					x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-cloak>
-					<div class="relative pl-10">
+					<div class="relative md:pl-10">
 						<!-- Vertical timeline -->
-						<div class="absolute left-5 top-2.5 bottom-12 w-px bg-transparent border-r-2 border-dashed border-zinc-200">
+						<div
+							class="hidden md:block absolute left-5 top-2.5 bottom-14 w-px bg-transparent border-r-2 border-dashed border-zinc-200">
 						</div>
 						<template x-for="(exp, index) in experienceList" :key="index">
-							<div class="relative flex justify-between items-start w-full gap-2 pr-2 py-6 md:pr-4 !pl-0 pt-0">
+							<div
+								class="relative flex justify-between items-start w-full gap-2 px-3 md:px-2 py-4 md:py-6 md:pr-4 md:!pl-0 md:pt-0 border-b border-zinc-200 md:border-b-0 last:border-b-0"
+								x-bind:class="{'pt-0': index === 0}">
 								<!-- Bullet item -->
-								<div class="w-4 h-4 rounded-full absolute -left-[27px] flex items-center justify-center"
+								<div class="hidden w-4 h-4 rounded-full absolute -left-[27px] md:flex items-center justify-center"
 									x-bind:class="{'bg-zinc-900 top-1.5': exp.current, 'bg-zinc-200 top-1': !exp.current}">
 									<svg x-bind:class="{'hidden': !exp.current}" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 										viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"
@@ -242,15 +276,15 @@
 								<!-- Experience details -->
 								<div class="space-y-1">
 									<h4 class="font-medium" x-text="exp.title"></h4>
-									<div class="text-xs font-normal text-zinc-800">
+									<div class="text-[13px] font-normal text-zinc-800">
 										<a :href="exp.company.url" class="hover:underline underline-offset-1" x-text="exp.company.name"></a>
 										- <span x-text="exp.jobType"></span>
 									</div>
 								</div>
 								<!-- Experience duration and location -->
 								<div class="space-y-1 text-end">
-									<p class="text-xs font-normal text-zinc-800" x-text="exp.duration"></p>
-									<p class="text-xs font-normal text-zinc-800" x-text="exp.location"></p>
+									<p class="text-[13px] font-normal text-zinc-800" x-text="exp.duration"></p>
+									<p class="text-[13px] font-normal text-zinc-800" x-text="exp.location"></p>
 								</div>
 							</div>
 						</template>
@@ -266,8 +300,7 @@
 					<!-- Loop through reviews -->
 					<div class="space-y-8">
 						<template x-for="(client, index) in clientsList" :key="client.name">
-							<div
-								class="flex flex-col md:flex-row items-start gap-4 px-4 pb-8 border-b border-zinc-200 first-of-type:pt-0">
+							<div class="flex flex-col md:flex-row items-start gap-4 px-3 md:px-4 pb-8 border-b border-zinc-200 ">
 								<span class="inline-block text-zinc-400">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="36"
 										height="36">
@@ -279,7 +312,7 @@
 								<div class="space-y-6 w-full">
 									<q class="text-lg text-zinc-900" x-text="client.review"></q>
 									<div class=" flex items-center justify-between">
-										<span class="text-zinc-800 font-medium" x-text="client.name"></span>
+										<span class="text-lg text-zinc-800 font-medium" x-text="client.name"></span>
 										<span class="text-sm text-zinc-500" x-text="client.platform"></span>
 									</div>
 								</div>
@@ -311,7 +344,7 @@
 							<a :href="tech.url" target="_blank" rel="noopener noreferrer"
 								class="relative group flex flex-col sm:flex-row items-center justify-center gap-2 w-full h-[120px] border border-zinc-200 rounded-xl">
 								<img loading="lazy" :src="tech.logo" alt="" class="w-8 h-8" />
-								<span class="text-lg font-medium text-zinc-900" x-text="tech.name"></span>
+								<span class="md:text-lg font-medium text-zinc-900" x-text="tech.name"></span>
 								<span
 									class="absolute top-4 right-4 p-2 text-zinc-800 opacity-0 group-hover:opacity-100 group-hover:top-2 group-hover:right-2 transition-all transform will-change-transform duration-200">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -338,7 +371,7 @@
 								<a :href="contact.url.link" target="_blank" rel="noopener noreferrer"
 									class="group relative flex items-center gap-4 py-2 px-4" x-on:focus="tooltip = true">
 									<img loading="lazy" :src="contact.icon" :alt="contact.alt" class="w-5 h-5" />
-									<span class="text-lg font-medium text-zinc-900" x-text="contact.name"></span>
+									<span class="md:text-lg font-medium text-zinc-900" x-text="contact.name"></span>
 									<span class="hidden md:block text-sm text-zinc-500" x-text="contact.url.text"></span>
 									<span
 										class="absolute inset-0 z-[-1] bg-zinc-200 rounded-2xl scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200"></span>
@@ -371,6 +404,8 @@
 			</div>
 		</section>
 	</main>
+
+	</div>
 
 	<!-- animate-words.js -->
 	<script>
