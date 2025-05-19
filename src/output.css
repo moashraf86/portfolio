@@ -2208,6 +2208,11 @@ video {
      object-position: center;
 }
 
+.object-top {
+  -o-object-position: top;
+     object-position: top;
+}
+
 .p-1 {
   padding: 0.25rem;
 }
@@ -3191,6 +3196,11 @@ body {
 
   .md\:border-b-0 {
     border-bottom-width: 0px;
+  }
+
+  .md\:object-cover {
+    -o-object-fit: cover;
+       object-fit: cover;
   }
 
   .md\:object-left-top {

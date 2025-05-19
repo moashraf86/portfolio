@@ -30,9 +30,18 @@
 	<link rel="canonical" href="https://moashraf86.github.io/portfolio/" />
 
 	<!-- Favicon -->
-	<link rel="apple-touch-icon" sizes="180x180"
+	<link rel="apple-touch-icon" type="image/png" sizes="180x180"
 		href="https://res.cloudinary.com/daswys0i8/image/upload/v1747673819/apple-touch.png">
-	<link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/daswys0i8/image/upload/v1747673805/favicon.svg">
+	<link rel="icon" type="image/svg+xml" sizes="64x64"
+		href="https://res.cloudinary.com/daswys0i8/image/upload/v1747673805/favicon.svg" />
+	<!-- Favicon Fallback -->
+	<link rel="icon" type="image/png" sizes="64x64"
+		href="https://res.cloudinary.com/daswys0i8/image/upload/v1747696265/favicon-fallback.png" />
+	<link rel="icon" type="image/png" sizes="32x32"
+		href="https://res.cloudinary.com/daswys0i8/image/upload/c_fill,w_32,h_32,g_auto/v1747696265/favicon-fallback.png" />
+	<link rel="icon" type="image/png" sizes="16x16"
+		href="https://res.cloudinary.com/daswys0i8/image/upload/c_fill,w_16,h_16,g_auto/v1747696265/favicon-fallback.png" />
+
 
 	<!-- Google Font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -241,7 +250,7 @@
 									<div
 										class="md:absolute -right-[90px] top-0 border border-zinc-200 rounded-xl overflow-hidden aspect-video md:aspect-[1.25/1] shadow-cover">
 										<img :src="project.image" :alt="project.name + ' cover'"
-											class="object-cover object-center md:object-left-top w-full h-full" width="2940" height="1672" />
+											class="object-cover object-top md:object-left-top w-full h-full" width="2940" height="1672" />
 									</div>
 								</div>
 							</div>
