@@ -135,31 +135,46 @@
 			x-transition:enter="transition ease-in-out duration-300" x-transition:enter-start="opacity-0 translate-y-8"
 			x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150">
 
-			<nav>
+			<nav aria-label="Tabs">
 				<!-- Tab buttons -->
-				<ul class="flex items-center flex-wrap gap-2">
-					<li>
-						<button x-on:click="openTab = 1"
+				<ul role="tablist" class="flex items-center flex-wrap gap-2">
+					<li role="presentation">
+						<button id="tab-projects" x-on:click="openTab = 1"
+							x-on:keydown.arrow-right.prevent="openTab = openTab < 5 ? openTab + 1 : 1"
+							x-on:keydown.arrow-left.prevent="openTab = openTab > 1 ? openTab - 1 : 5" role="tab"
+							aria-controls="panel-projects" :aria-selected="openTab === 1"
 							class="text-sm text-zinc-500 rounded-full px-3 py-1 transition-colors duration-200"
 							x-bind:class="{'bg-zinc-900 !text-zinc-50': openTab === 1}">Projects</button>
 					</li>
-					<li>
-						<button x-on:click="openTab = 2"
+					<li role="presentation">
+						<button id="tab-experience" x-on:click="openTab = 2"
+							x-on:keydown.arrow-right.prevent="openTab = openTab < 5 ? openTab + 1 : 1"
+							x-on:keydown.arrow-left.prevent="openTab = openTab > 1 ? openTab - 1 : 5" role="tab"
+							aria-controls="panel-experience" :aria-selected="openTab === 2"
 							class="text-sm text-zinc-500 rounded-full px-3 py-1 transition-colors duration-200"
 							x-bind:class="{'bg-zinc-900 !text-zinc-50': openTab === 2}">Experience</button>
 					</li>
-					<li>
-						<button x-on:click="openTab = 3"
+					<li role="presentation">
+						<button id="tab-clients" x-on:click="openTab = 3"
+							x-on:keydown.arrow-right.prevent="openTab = openTab < 5 ? openTab + 1 : 1"
+							x-on:keydown.arrow-left.prevent="openTab = openTab > 1 ? openTab - 1 : 5" role="tab"
+							aria-controls="panel-clients" :aria-selected="openTab === 3"
 							class="text-sm text-zinc-500 rounded-full px-3 py-1 transition-colors duration-200"
 							x-bind:class="{'bg-zinc-900 !text-zinc-50': openTab === 3}">Clients</button>
 					</li>
-					<li>
-						<button x-on:click="openTab = 4"
+					<li role="presentation">
+						<button id="tab-stack" x-on:click="openTab = 4"
+							x-on:keydown.arrow-right.prevent="openTab = openTab < 5 ? openTab + 1 : 1"
+							x-on:keydown.arrow-left.prevent="openTab = openTab > 1 ? openTab - 1 : 5" role="tab"
+							aria-controls="panel-stack" :aria-selected="openTab === 4"
 							class="text-sm text-zinc-500 rounded-full px-3 py-1 transition-colors duration-200"
 							x-bind:class="{'bg-zinc-900 !text-zinc-50': openTab === 4}">Stack</button>
 					</li>
-					<li>
-						<button x-on:click="openTab = 5"
+					<li role="presentation">
+						<button id="tab-connect" x-on:click="openTab = 5"
+							x-on:keydown.arrow-right.prevent="openTab = openTab < 5 ? openTab + 1 : 1"
+							x-on:keydown.arrow-left.prevent="openTab = openTab > 1 ? openTab - 1 : 5" role="tab"
+							aria-controls="panel-connect" :aria-selected="openTab === 5"
 							class="text-sm text-zinc-500 rounded-full px-3 py-1 transition-colors duration-200"
 							x-bind:class="{'bg-zinc-900 !text-zinc-50': openTab === 5}">Connect</button>
 					</li>
@@ -168,12 +183,13 @@
 			<!-- Tab content -->
 			<div class="mt-10">
 				<!-- Projects -->
-				<div x-data="projects()" x-show="openTab === 1"
+				<div id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" tabindex="0"
+					x-data="{projectsList: $store.projects}" x-show="openTab === 1"
 					x-transition:enter="transition transform opacity ease-in-out duration-500"
 					x-transition:enter-start="opacity-0 scale-95 translate-y-2"
 					x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-cloak>
 					<div class="space-y-10">
-						<template x-for="project in projectList" :key="index">
+						<template x-for="project in projectsList" :key="project.name">
 							<div
 								class="relative grid grid-cols-1 md:grid-cols-2 p-4 md:p-8 bg-white rounded-xl shadow-card gap-8 items-center overflow-hidden">
 								<!-- Project Info -->
@@ -185,7 +201,9 @@
 										<p class="text-sm text-zinc-500" x-text="project.description"></p>
 									</div>
 									<a :href="project.url.link" x-text="project.url.text" target="_blank" rel="noopener noreferrer"
-										class="inline-block text-sm text-zinc-900 hover:text-zinc-50 bg-white hover:bg-zinc-900 border border-zinc-900 rounded-full px-3 py-1 transition-colors antialiased"></a>
+										class="inline-block text-sm text-zinc-900 hover:text-zinc-50 bg-white hover:bg-zinc-900 border border-zinc-900 rounded-full px-3 py-1 transition-colors antialiased"
+										x-bind:aria-label="'Visit '+ project.name">
+										></a>
 								</div>
 								<!-- Project Image -->
 								<div class="relative h-full overflow-visible">
@@ -201,7 +219,8 @@
 				</div>
 
 				<!-- Experience -->
-				<div x-data="experience()" x-show="openTab === 2"
+				<div id="panel-experience" role="tabpanel" aria-labelledby="tab-experience" tabindex="0"
+					x-data="{experienceList: $store.experience}" x-show="openTab === 2"
 					x-transition:enter="transition transform opacity ease-in-out duration-500"
 					x-transition:enter-start="opacity-0 scale-95 translate-y-2"
 					x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-cloak>
@@ -239,13 +258,14 @@
 				</div>
 
 				<!-- Clients -->
-				<div x-data="reviews()" x-show="openTab === 3"
+				<div id="panel-clients" role="tabpanel" aria-labelledby="tab-clients" tabindex="0"
+					x-data="{clientsList: $store.clients}" x-show="openTab === 3"
 					x-transition:enter="transition transform opacity ease-in-out duration-500"
 					x-transition:enter-start="opacity-0 scale-95 translate-y-2"
 					x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-cloak>
 					<!-- Loop through reviews -->
 					<div class="space-y-8">
-						<template x-for="(review, index) in reviewList" :key="index">
+						<template x-for="(client, index) in clientsList" :key="client.name">
 							<div
 								class="flex flex-col md:flex-row items-start gap-4 px-4 pb-8 border-b border-zinc-200 first-of-type:pt-0">
 								<span class="inline-block text-zinc-400">
@@ -257,10 +277,10 @@
 									</svg>
 								</span>
 								<div class="space-y-6 w-full">
-									<q class="text-lg text-zinc-900" x-text="review.review"></q>
-									<div class="flex items-center justify-between">
-										<span class="text-zinc-800 font-medium" x-text="review.name"></span>
-										<span class="text-sm text-zinc-500" x-text="review.platform"></span>
+									<q class="text-lg text-zinc-900" x-text="client.review"></q>
+									<div class=" flex items-center justify-between">
+										<span class="text-zinc-800 font-medium" x-text="client.name"></span>
+										<span class="text-sm text-zinc-500" x-text="client.platform"></span>
 									</div>
 								</div>
 							</div>
@@ -281,12 +301,13 @@
 				</div>
 
 				<!-- Tech Stack -->
-				<div x-show="openTab === 4" x-data="techStack()"
+				<div id="panel-stack" role="tabpanel" aria-labelledby="tab-stack" tabindex="0" x-show="openTab === 4"
+					x-data="{techList: $store.techStack}"
 					x-transition:enter="transition transform opacity ease-in-out duration-500"
 					x-transition:enter-start="opacity-0 scale-95 translate-y-2"
 					x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-cloak>
 					<div class="grid grid-cols-2 sm:grid-cols-3 gap-4 px-4">
-						<template x-for="(tech, index) in techList" :key="index">
+						<template x-for="(tech, index) in techList" :key="tech.name">
 							<a :href="tech.url" target="_blank" rel="noopener noreferrer"
 								class="relative group flex flex-col sm:flex-row items-center justify-center gap-2 w-full h-[120px] border border-zinc-200 rounded-xl">
 								<img loading="lazy" :src="tech.logo" alt="" class="w-8 h-8" />
@@ -306,12 +327,13 @@
 				</div>
 
 				<!-- Connect -->
-				<div x-show="openTab === 5" x-data="connect()"
+				<div id="panel-connect" role="tabpanel" aria-labelledby="tab-connect" tabindex="0" x-show="openTab === 5"
+					x-data="{contactList: $store.connect}"
 					x-transition:enter="transition transform opacity ease-in-out duration-500"
 					x-transition:enter-start="opacity-0 scale-95 translate-y-2"
 					x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-cloak>
 					<ul class="flex flex-col items-start justify-start gap-4">
-						<template x-for="(contact, index) in contactList" :key="index">
+						<template x-for="(contact, index) in contactList" :key="contact.name">
 							<li class="flex items-center gap-1" x-data="{ copied: false }">
 								<a :href="contact.url.link" target="_blank" rel="noopener noreferrer"
 									class="group relative flex items-center gap-4 py-2 px-4" x-on:focus="tooltip = true">
@@ -402,331 +424,312 @@
 	</script>
 
 	<script>
-
-		// Projects
-		function projects() {
-			return {
-				projectList: [
-					{
-						name: 'CVMaster',
-						description: 'AI-powered resume builder that helps users create professional resumes with smart suggestions to improve their content.',
-						image: './assets/cvmaster-cover.png',
-						icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747584999/CVMaster-logo_bmmrpd.svg',
-						shadow: true,
-						url: {
-							text: 'Visit App',
-							link: 'https://cvmstr.vercel.app/'
-						}
+		// Alpine.js store for managing state
+		const portfolioData = {
+			projects: [
+				{
+					name: 'CVMaster',
+					description: 'AI-powered resume builder that helps users create professional resumes with smart suggestions to improve their content.',
+					image: './assets/cvmaster-cover.png',
+					icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747584999/CVMaster-logo_bmmrpd.svg',
+					shadow: true,
+					url: {
+						text: 'Visit App',
+						link: 'https://cvmstr.vercel.app/'
+					}
+				},
+				{
+					name: 'GroqBot',
+					description: 'AI-powered chatbot that helps users with their queries and provides smart suggestions to improve their experience.',
+					image: './assets/GroqBot-cover.png',
+					icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747584833/groqBot-logo.svg',
+					shadow: true,
+					url: {
+						text: 'Visit App',
+						link: 'https://groq-bot.vercel.app/'
+					}
+				},
+				{
+					name: 'Blogify',
+					description: 'A blogging platform that allows users to create, share, and discover blogs on various topics.',
+					image: './assets/blogify-cover.png',
+					icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747583981/portfolio/blogify-logo.svg',
+					shadow: true,
+					rounded: true,
+					url: {
+						text: 'Visit App',
+						link: 'https://blogify86.vercel.app/'
+					}
+				},
+				{
+					name: 'Fastpanel',
+					description: 'Simple and powerful server panel – create sites in clicks, manage domains, view live stats, and get 24/7 support with no vendor lock-in.',
+					image: './assets/fastpanel-cover.png',
+					icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747582783/portfolio/fastpanel-logo.svg',
+					url: {
+						text: 'Visit Site',
+						link: 'https://moashraf86.github.io/fastpanel/'
+					}
+				},
+				{
+					name: 'VM-Tycoon',
+					description: 'Built a responsive clone of Vmtycoon.io for a client, matching its main features and design using modern styling tools.',
+					image: './assets/vmtycoon-cover.png',
+					icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747582783/portfolio/vmtycoon-logo.avif',
+					url: {
+						text: 'Visit Site',
+						link: 'https://moashraf86.github.io/VM-Tycoon/'
+					}
+				},
+				{
+					name: 'MotorsCity',
+					description: 'A platform that connects buyers and sellers of vehicles, providing a seamless experience for both parties.',
+					image: './assets/motorscity-cover.png',
+					icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747582783/portfolio/motorscity-logo.avif',
+					url: {
+						text: 'Visit Site',
+						link: 'https://moashraf86.github.io/motorsCity/en/'
+					}
+				},
+				{
+					name: 'StickerYou',
+					description: 'A platform that allows users to create and customize their own stickers, providing a fun and creative outlet for self-expression.',
+					image: './assets/stickeryou-cover.png',
+					icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747582783/portfolio/stickeryou-logo.avif',
+					url: {
+						text: 'Visit Site',
+						link: 'https://www.stickeryou.com/'
+					}
+				}
+			],
+			experience: [
+				{
+					title: 'Frontend Developer',
+					company: {
+						name: 'Aqwas',
+						url: 'https://aqwas.sa/'
 					},
-					{
-						name: 'GroqBot',
-						description: 'AI-powered chatbot that helps users with their queries and provides smart suggestions to improve their experience.',
-						image: './assets/GroqBot-cover.png',
-						icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747584833/groqBot-logo.svg',
-						shadow: true,
-						url: {
-							text: 'Visit App',
-							link: 'https://groq-bot.vercel.app/'
-						}
-					},
-					{
-						name: 'Blogify',
-						description: 'A blogging platform that allows users to create, share, and discover blogs on various topics.',
-						image: './assets/blogify-cover.png',
-						icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747583981/portfolio/blogify-logo.svg',
-						shadow: true,
-						rounded: true,
-						url: {
-							text: 'Visit App',
-							link: 'https://blogify86.vercel.app/'
-						}
-					},
-					{
-						name: 'Fastpanel',
-						description: 'Simple and powerful server panel – create sites in clicks, manage domains, view live stats, and get 24/7 support with no vendor lock-in.',
-						image: './assets/fastpanel-cover.png',
-						icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747582783/portfolio/fastpanel-logo.svg',
-						url: {
-							text: 'Visit Site',
-							link: 'https://moashraf86.github.io/fastpanel/'
-						}
-					},
-					{
-						name: 'VM-Tycoon',
-						description: 'Built a responsive clone of Vmtycoon.io for a client, matching its main features and design using modern styling tools.',
-						image: './assets/vmtycoon-cover.png',
-						icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747582783/portfolio/vmtycoon-logo.avif',
-						url: {
-							text: 'Visit Site',
-							link: 'https://moashraf86.github.io/VM-Tycoon/'
-						}
-					},
-					{
+					jobType: 'Full-time',
+					duration: 'Jul 2023 - Present',
+					location: 'Riyadh, KSA - Remotely',
+					current: true
+				},
+				{
+					title: 'Frontend Developer',
+					company: {
 						name: 'MotorsCity',
-						description: 'A platform that connects buyers and sellers of vehicles, providing a seamless experience for both parties.',
-						image: './assets/motorscity-cover.png',
-						icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747582783/portfolio/motorscity-logo.avif',
-						url: {
-							text: 'Visit Site',
-							link: 'https://moashraf86.github.io/motorsCity/en/'
-						}
+						url: 'https://motorscity.com/'
 					},
-					{
-						name: 'StickerYou',
-						description: 'A platform that allows users to create and customize their own stickers, providing a fun and creative outlet for self-expression.',
-						image: './assets/stickeryou-cover.png',
-						icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747582783/portfolio/stickeryou-logo.avif',
-						url: {
-							text: 'Visit Site',
-							link: 'https://www.stickeryou.com/'
-						}
-					}
-				]
-			};
-		}
+					jobType: 'Freelance',
+					duration: 'Jun 2022 - Jul 2023',
+					location: 'Riyadh, KSA'
+				},
+				{
+					title: 'Frontend Developer',
+					company: {
+						name: 'YourMedia Inc.',
+						url: 'https://yourmedia.io/'
+					},
+					jobType: 'Freelance',
+					duration: 'Mar 2020 - Jul 2023',
+					location: 'Montreal, Canada'
+				}
+			],
+			clients: [
+				{
+					name: 'Mohamed Hussain',
+					review: 'Top notch designer and front end developer. He is very reserfull and work the extra mile to make things perfect. Thank you, Mohamed',
+					platform: '@upwork'
+				},
+				{
+					name: 'Frank Duah',
+					review: 'It is a pleasure working with Mohamed. I look forward to working with him again in the near future.',
+					platform: '@upwork'
+				}, {
+					name: 'Alon Weinstein',
+					review: 'Mohamed worked quickly and professionally. Would work with him again',
+					platform: '@upwork'
+				},
+				{
+					name: 'Elliot Noteware',
+					review: "Mohammad was amazing, great design work, and communication. Definitely hiring again.",
+					platform: '@upwork'
+				},
+				{
+					name: 'Musaad Alshulawi',
+					review: 'Amazing Front end design and amazing person, very helpful, Highly recommended. He just gets what I need super quick and super happy with the results. if you\'re looking for a professional UI designer he\'s the one to go to. I\'m definitely working with him again for upcoming projects',
+					platform: '@upwork'
+				}
+			],
+			techStack: [
+				{
+					name: 'React.js',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+					url: 'https://reactjs.org/'
+				},
+				{
+					name: 'Next.js',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
+					url: 'https://nextjs.org/'
+				},
+				{
+					name: 'React Router',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/reactrouter/reactrouter-original.svg',
+					url: 'https://reactrouter.com/'
+				},
+				{
+					name: 'Redux',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg',
+					url: 'https://redux.js.org/'
+				},
+				{
+					name: 'Tanstack',
+					logo: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747502482/portfolio/tanstack-logo.png',
+					url: 'https://tanstack.com/query/latest'
+				},
+				{
+					name: 'Zustand',
+					logo: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747502482/portfolio/zustand-logo.svg',
+					url: 'https://github.com/pmndrs/zustand'
+				},
+				{
+					name: 'SWR',
+					logo: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747502601/portfolio/swr-logo.svg',
+					url: 'https://swr.vercel.app/'
+				},
+				{
+					name: 'Firebase',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
+					url: 'https://firebase.google.com/'
+				},
+				{
+					name: 'HTML5',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+					url: 'https://developer.mozilla.org/en-US/docs/Web/HTML'
+				},
+				{
+					name: 'JavaScript',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+					url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'
+				},
+				{
+					name: 'TypeScript',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
+					url: 'https://www.typescriptlang.org/'
+				},
+				{
+					name: 'Alpine.js',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/alpinejs/alpinejs-original.svg',
+					url: 'https://alpinejs.dev/'
+				},
+				{
+					name: 'CSS3',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
+					url: 'https://developer.mozilla.org/en-US/docs/Web/CSS'
+				},
+				{
+					name: 'Sass',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg',
+					url: 'https://sass-lang.com/'
+				},
+				{
+					name: 'Tailwind CSS',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
+					url: 'https://tailwindcss.com/'
+				},
+				{
+					name: 'Bootstrap',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',
+					url: 'https://getbootstrap.com/'
+				},
+				{
+					name: 'ShadcnUI',
+					logo: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747502334/portfolio/shadcnui-logo.svg',
+					url: 'https://ui.shadcn.com/'
+				},
+				{
+					name: 'Git',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+					url: 'https://git-scm.com/'
+				},
+				{
+					name: 'GitHub',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
+					url: 'https://github.com/'
+				},
+				{
+					name: 'VsCode',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',
+					url: 'https://code.visualstudio.com/'
+				},
+				{
+					name: 'Figma',
+					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
+					url: 'https://www.figma.com/'
+				},
+			],
+			connect: [
+				{
+					name: 'LinkedIn',
+					url: {
+						text: null,
+						link: 'https://www.linkedin.com/in/mohamed-ashraf-292124190/',
+						copy: true
+					},
+					icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M4.00098 3H20.001C20.5533 3 21.001 3.44772 21.001 4V20C21.001 20.5523 20.5533 21 20.001 21H4.00098C3.44869 21 3.00098 20.5523 3.00098 20V4C3.00098 3.44772 3.44869 3 4.00098 3ZM5.00098 5V19H19.001V5H5.00098ZM7.50098 9C6.67255 9 6.00098 8.32843 6.00098 7.5C6.00098 6.67157 6.67255 6 7.50098 6C8.3294 6 9.00098 6.67157 9.00098 7.5C9.00098 8.32843 8.3294 9 7.50098 9ZM6.50098 10H8.50098V17.5H6.50098V10ZM12.001 10.4295C12.5854 9.86534 13.2665 9.5 14.001 9.5C16.072 9.5 17.501 11.1789 17.501 13.25V17.5H15.501V13.25C15.501 12.2835 14.7175 11.5 13.751 11.5C12.7845 11.5 12.001 12.2835 12.001 13.25V17.5H10.001V10H12.001V10.4295Z'%3E%3C/path%3E%3C/svg%3E",
+					alt: 'LinkedIn-logo'
+				},
+				{
+					name: 'Upwork',
+					url: {
+						text: null,
+						link: 'https://www.upwork.com/freelancers/~01968000010adee9ee',
+						copy: true
+					},
+					icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747503998/portfolio/upwork-logo.svg',
+					alt: 'Upwork-logo'
+				},
+				{
+					name: 'Email',
+					url: {
+						text: 'dev.mohammed.ashraf@gmail.com',
+						link: 'mailto:dev.mohammed.ashraf@gmail.com',
+						copy: true
+					},
+					icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNlbmQtaWNvbiBsdWNpZGUtc2VuZCI+PHBhdGggZD0iTTE0LjUzNiAyMS42ODZhLjUuNSAwIDAgMCAuOTM3LS4wMjRsNi41LTE5YS40OTYuNDk2IDAgMCAwLS42MzUtLjYzNWwtMTkgNi41YS41LjUgMCAwIDAtLjAyNC45MzdsNy45MyAzLjE4YTIgMiAwIDAgMSAxLjExMiAxLjExeiIvPjxwYXRoIGQ9Im0yMS44NTQgMi4xNDctMTAuOTQgMTAuOTM5Ii8+PC9zdmc+",
+					alt: 'Email-logo'
+				},
+				{
+					name: 'Phone',
+					url: {
+						text: '+201064136500',
+						link: 'tel:+201064136500',
+						copy: true
+					},
+					icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXBob25lLWljb24gbHVjaWRlLXBob25lIj48cGF0aCBkPSJNMTMuODMyIDE2LjU2OGExIDEgMCAwIDAgMS4yMTMtLjMwM2wuMzU1LS40NjVBMiAyIDAgMCAxIDE3IDE1aDNhMiAyIDAgMCAxIDIgMnYzYTIgMiAwIDAgMS0yIDJBMTggMTggMCAwIDEgMiA0YTIgMiAwIDAgMSAyLTJoM2EyIDIgMCAwIDEgMiAydjNhMiAyIDAgMCAxLS44IDEuNmwtLjQ2OC4zNTFhMSAxIDAgMCAwLS4yOTIgMS4yMzMgMTQgMTQgMCAwIDAgNi4zOTIgNi4zODQiLz48L3N2Zz4=",
+					alt: 'Phone-logo'
+				},
+				{
+					name: 'Book a Call',
+					url: {
+						text: null,
+						link: 'https://cal.com/moashraf.dev',
+						copy: true
+					},
+					icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNhbGVuZGFyLWRheXMtaWNvbiBsdWNpZGUtY2FsZW5kYXItZGF5cyI+PHBhdGggZD0iTTggMnY0Ii8+PHBhdGggZD0iTTE2IDJ2NCIvPjxyZWN0IHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgeD0iMyIgeT0iNCIgcng9IjIiLz48cGF0aCBkPSJNMyAxMGgxOCIvPjxwYXRoIGQ9Ik04IDE0aC4wMSIvPjxwYXRoIGQ9Ik0xMiAxNGguMDEiLz48cGF0aCBkPSJNMTYgMTRoLjAxIi8+PHBhdGggZD0iTTggMThoLjAxIi8+PHBhdGggZD0iTTEyIDE4aC4wMSIvPjxwYXRoIGQ9Ik0xNiAxOGguMDEiLz48L3N2Zz4=",
+					alt: 'Book-a-Call-logo'
+				}
+			]
+		};
 
-		// Experience
-		function experience() {
-			return {
-				experienceList: [
-					{
-						title: 'Frontend Developer',
-						company: {
-							name: 'Aqwas',
-							url: 'https://aqwas.sa/'
-						},
-						jobType: 'Full-time',
-						duration: 'Jul 2023 - Present',
-						location: 'Riyadh, KSA - Remotely',
-						current: true
-					},
-					{
-						title: 'Frontend Developer',
-						company: {
-							name: 'MotorsCity',
-							url: 'https://motorscity.com/'
-						},
-						jobType: 'Freelance',
-						duration: 'Jun 2022 - Jul 2023',
-						location: 'Riyadh, KSA'
-					},
-					{
-						title: 'Frontend Developer',
-						company: {
-							name: 'YourMedia Inc.',
-							url: 'https://yourmedia.io/'
-						},
-						jobType: 'Freelance',
-						duration: 'Mar 2020 - Jul 2023',
-						location: 'Montreal, Canada'
-					}
-				]
-			};
-		}
-
-		// Clients Reviews
-		function reviews() {
-			return {
-				reviewList: [
-					{
-						name: 'Mohamed Hussain',
-						review: 'Top notch designer and front end developer. He is very reserfull and work the extra mile to make things perfect. Thank you, Mohamed',
-						platform: '@upwork'
-					},
-					{
-						name: 'Frank Duah',
-						review: 'It is a pleasure working with Mohamed. I look forward to working with him again in the near future.',
-						platform: '@upwork'
-					}, {
-						name: 'Alon Weinstein',
-						review: 'Mohamed worked quickly and professionally. Would work with him again',
-						platform: '@upwork'
-					},
-					{
-						name: 'Elliot Noteware',
-						review: "Mohammad was amazing, great design work, and communication. Definitely hiring again.",
-						platform: '@upwork'
-					},
-					{
-						name: 'Musaad Alshulawi',
-						review: 'Amazing Front end design and amazing person, very helpful, Highly recommended. He just gets what I need super quick and super happy with the results. if you\'re looking for a professional UI designer he\'s the one to go to. I\'m definitely working with him again for upcoming projects',
-						platform: '@upwork'
-					}
-				]
-			};
-		}
-
-		// Tech Stack
-		function techStack() {
-			return {
-				techList: [
-					{
-						name: 'React.js',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-						url: 'https://reactjs.org/'
-					},
-					{
-						name: 'Next.js',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
-						url: 'https://nextjs.org/'
-					},
-					{
-						name: 'React Router',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/reactrouter/reactrouter-original.svg',
-						url: 'https://reactrouter.com/'
-					},
-					{
-						name: 'Redux',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg',
-						url: 'https://redux.js.org/'
-					},
-					{
-						name: 'Tanstack',
-						logo: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747502482/portfolio/tanstack-logo.png',
-						url: 'https://tanstack.com/query/latest'
-					},
-					{
-						name: 'Zustand',
-						logo: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747502482/portfolio/zustand-logo.svg',
-						url: 'https://github.com/pmndrs/zustand'
-					},
-					{
-						name: 'SWR',
-						logo: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747502601/portfolio/swr-logo.svg',
-						url: 'https://swr.vercel.app/'
-					},
-					{
-						name: 'Firebase',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
-						url: 'https://firebase.google.com/'
-					},
-					{
-						name: 'HTML5',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
-						url: 'https://developer.mozilla.org/en-US/docs/Web/HTML'
-					},
-					{
-						name: 'JavaScript',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
-						url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'
-					},
-					{
-						name: 'TypeScript',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
-						url: 'https://www.typescriptlang.org/'
-					},
-					{
-						name: 'Alpine.js',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/alpinejs/alpinejs-original.svg',
-						url: 'https://alpinejs.dev/'
-					},
-					{
-						name: 'CSS3',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
-						url: 'https://developer.mozilla.org/en-US/docs/Web/CSS'
-					},
-					{
-						name: 'Sass',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg',
-						url: 'https://sass-lang.com/'
-					},
-					{
-						name: 'Tailwind CSS',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
-						url: 'https://tailwindcss.com/'
-					},
-					{
-						name: 'Bootstrap',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',
-						url: 'https://getbootstrap.com/'
-					},
-					{
-						name: 'ShadcnUI',
-						logo: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747502334/portfolio/shadcnui-logo.svg',
-						url: 'https://ui.shadcn.com/'
-					},
-					{
-						name: 'Git',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-						url: 'https://git-scm.com/'
-					},
-					{
-						name: 'GitHub',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
-						url: 'https://github.com/'
-					},
-					{
-						name: 'VsCode',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',
-						url: 'https://code.visualstudio.com/'
-					},
-					{
-						name: 'Figma',
-						logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
-						url: 'https://www.figma.com/'
-					},
-
-				]
-			};
-		}
-
-		// Connect
-		function connect() {
-			return {
-				contactList: [
-					{
-						name: 'LinkedIn',
-						url: {
-							text: null,
-							link: 'https://www.linkedin.com/in/mohamed-ashraf-292124190/',
-							copy: true
-						},
-						icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M4.00098 3H20.001C20.5533 3 21.001 3.44772 21.001 4V20C21.001 20.5523 20.5533 21 20.001 21H4.00098C3.44869 21 3.00098 20.5523 3.00098 20V4C3.00098 3.44772 3.44869 3 4.00098 3ZM5.00098 5V19H19.001V5H5.00098ZM7.50098 9C6.67255 9 6.00098 8.32843 6.00098 7.5C6.00098 6.67157 6.67255 6 7.50098 6C8.3294 6 9.00098 6.67157 9.00098 7.5C9.00098 8.32843 8.3294 9 7.50098 9ZM6.50098 10H8.50098V17.5H6.50098V10ZM12.001 10.4295C12.5854 9.86534 13.2665 9.5 14.001 9.5C16.072 9.5 17.501 11.1789 17.501 13.25V17.5H15.501V13.25C15.501 12.2835 14.7175 11.5 13.751 11.5C12.7845 11.5 12.001 12.2835 12.001 13.25V17.5H10.001V10H12.001V10.4295Z'%3E%3C/path%3E%3C/svg%3E",
-						alt: 'LinkedIn-logo'
-					},
-					{
-						name: 'Upwork',
-						url: {
-							text: null,
-							link: 'https://www.upwork.com/freelancers/~01968000010adee9ee',
-							copy: true
-						},
-						icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747503998/portfolio/upwork-logo.svg',
-						alt: 'Upwork-logo'
-					},
-					{
-						name: 'Email',
-						url: {
-							text: 'dev.mohammed.ashraf@gmail.com',
-							link: 'mailto:dev.mohammed.ashraf@gmail.com',
-							copy: true
-						},
-						icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNlbmQtaWNvbiBsdWNpZGUtc2VuZCI+PHBhdGggZD0iTTE0LjUzNiAyMS42ODZhLjUuNSAwIDAgMCAuOTM3LS4wMjRsNi41LTE5YS40OTYuNDk2IDAgMCAwLS42MzUtLjYzNWwtMTkgNi41YS41LjUgMCAwIDAtLjAyNC45MzdsNy45MyAzLjE4YTIgMiAwIDAgMSAxLjExMiAxLjExeiIvPjxwYXRoIGQ9Im0yMS44NTQgMi4xNDctMTAuOTQgMTAuOTM5Ii8+PC9zdmc+",
-						alt: 'Email-logo'
-					},
-					{
-						name: 'Phone',
-						url: {
-							text: '+201064136500',
-							link: 'tel:+201064136500',
-							copy: true
-						},
-						icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXBob25lLWljb24gbHVjaWRlLXBob25lIj48cGF0aCBkPSJNMTMuODMyIDE2LjU2OGExIDEgMCAwIDAgMS4yMTMtLjMwM2wuMzU1LS40NjVBMiAyIDAgMCAxIDE3IDE1aDNhMiAyIDAgMCAxIDIgMnYzYTIgMiAwIDAgMS0yIDJBMTggMTggMCAwIDEgMiA0YTIgMiAwIDAgMSAyLTJoM2EyIDIgMCAwIDEgMiAydjNhMiAyIDAgMCAxLS44IDEuNmwtLjQ2OC4zNTFhMSAxIDAgMCAwLS4yOTIgMS4yMzMgMTQgMTQgMCAwIDAgNi4zOTIgNi4zODQiLz48L3N2Zz4=",
-						alt: 'Phone-logo'
-					},
-					{
-						name: 'Book a Call',
-						url: {
-							text: null,
-							link: 'https://cal.com/moashraf.dev',
-							copy: true
-						},
-						icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNhbGVuZGFyLWRheXMtaWNvbiBsdWNpZGUtY2FsZW5kYXItZGF5cyI+PHBhdGggZD0iTTggMnY0Ii8+PHBhdGggZD0iTTE2IDJ2NCIvPjxyZWN0IHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgeD0iMyIgeT0iNCIgcng9IjIiLz48cGF0aCBkPSJNMyAxMGgxOCIvPjxwYXRoIGQ9Ik04IDE0aC4wMSIvPjxwYXRoIGQ9Ik0xMiAxNGguMDEiLz48cGF0aCBkPSJNMTYgMTRoLjAxIi8+PHBhdGggZD0iTTggMThoLjAxIi8+PHBhdGggZD0iTTEyIDE4aC4wMSIvPjxwYXRoIGQ9Ik0xNiAxOGguMDEiLz48L3N2Zz4=",
-						alt: 'Book-a-Call-logo'
-					}
-				]
-			}
-		}
+		// Make data available to Alpine components
+		document.addEventListener('alpine:init', () => {
+			Alpine.store('projects', portfolioData.projects);
+			Alpine.store('experience', portfolioData.experience);
+			Alpine.store('clients', portfolioData.clients);
+			Alpine.store('techStack', portfolioData.techStack);
+			Alpine.store('connect', portfolioData.connect);
+		});
 	</script>
 </body>
 
