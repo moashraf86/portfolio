@@ -228,10 +228,11 @@
 					x-transition:enter="transition transform opacity ease-in-out duration-500"
 					x-transition:enter-start="opacity-0 scale-95 translate-y-2"
 					x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-cloak>
-					<div class="space-y-10">
+					<div class="flex flex-col gap-10">
 						<template x-for="project in projectsList" :key="project.name">
 							<div
-								class="relative grid grid-cols-1 md:grid-cols-2 p-6  md:p-8 bg-white rounded-xl shadow-card gap-8 items-center overflow-hidden">
+								class="relative grid grid-cols-1 md:grid-cols-2 p-6  md:p-8 bg-white rounded-xl shadow-card gap-8 items-center overflow-hidden"
+								x-bind:class="{'order-first': project.pin, 'order-last': !project.pin}">
 								<!-- Project Info -->
 								<div class="space-y-8">
 									<img :src="project.icon" :alt="project.name + ' icon'" width="35" height="35"
@@ -240,18 +241,29 @@
 										<h3 class="text-xl font-medium text-zinc-900" x-text="project.name"></h3>
 										<p class="text-zinc-500" x-text="project.description"></p>
 									</div>
+									<!-- Tech Stack -->
+									<div class="flex flex-wrap gap-2">
+										<template x-for="stack in project.stack" :key="stack">
+											<span class="inline-block bg-zinc-100 rounded-full px-2 py-1 text-xs text-zinc-500"
+												x-text="stack"></span>
+										</template>
+									</div>
 									<a :href="project.url.link" x-text="project.url.text" target="_blank" rel="noopener noreferrer"
-										class="inline-block text-sm text-zinc-900 hover:text-zinc-50 bg-white hover:bg-zinc-900 border border-zinc-900 rounded-full px-3 py-1 transition-colors antialiased"
+										class="hidden md:inline-block text-sm text-zinc-900 hover:text-zinc-50 bg-white hover:bg-zinc-900 border border-zinc-900 rounded-full px-3 py-1 transition-colors antialiased"
 										x-bind:aria-label="'Visit '+ project.name">
 										></a>
 								</div>
 								<!-- Project Image -->
 								<div class="relative h-full overflow-visible">
 									<div
-										class="md:absolute -right-[90px] top-0 border border-zinc-200 rounded-xl overflow-hidden aspect-video md:aspect-[1.25/1] shadow-cover">
+										class="md:absolute -right-[90px] top-[15%] border border-zinc-200 rounded-xl overflow-hidden aspect-video md:aspect-[1.25/1] shadow-cover">
 										<img :src="project.image" :alt="project.name + ' cover'"
 											class="object-cover object-top md:object-left-top w-full h-full" width="2940" height="1672" />
 									</div>
+									<a :href="project.url.link" x-text="project.url.text" target="_blank" rel="noopener noreferrer"
+										class="inline-block md:hidden text-sm text-zinc-900 hover:text-zinc-50 bg-white hover:bg-zinc-900 border border-zinc-900 rounded-full px-3 py-1 transition-colors antialiased mt-8"
+										x-bind:aria-label="'Visit '+ project.name">
+										></a>
 								</div>
 							</div>
 						</template>
@@ -482,44 +494,58 @@
 		const portfolioData = {
 			projects: [
 				{
+					name: 'Focal Store',
+					description: 'A full-stack e-commerce platform that helps businesses sell watches online through a smooth and responsive experience.',
+					image: './assets/focal-cover.png',
+					icon: './assets/icons/focal-logo.png',
+					stack: ['Next.js', 'TypeScript', 'Shadcn/ui', 'TailwindCSS', 'Strapi', 'SWR', 'Zod', 'Clerk', 'Resend', 'Stripe'],
+					url: {
+						text: 'Visit Site',
+						link: 'https://focal-mu.vercel.app/'
+					}
+				},
+				{
 					name: 'CVMaster',
 					description: 'AI-powered resume builder that helps users create professional resumes with smart suggestions to improve their content.',
 					image: './assets/cvmaster-cover.png',
-					icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747584999/CVMaster-logo_bmmrpd.svg',
-					shadow: true,
+					icon: './assets/icons/cvmaster-logo.webp',
+					stack: ['React', 'Shadcn/ui', 'TailwindCSS', 'Zustand', 'Zod', 'Puppeteer', 'Express', 'Groq SDK'],
 					url: {
 						text: 'Visit App',
 						link: 'https://cvmaster.app/'
-					}
+					},
+					pin: true,
 				},
 				{
 					name: 'GroqBot',
 					description: 'AI-powered chatbot that helps users with their queries and provides smart suggestions to improve their experience.',
 					image: './assets/GroqBot-cover.png',
-					icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747584833/groqBot-logo.svg',
-					shadow: true,
+					icon: './assets/icons/groqbot-logo.svg',
+					stack: ['React', 'TypeScript', 'Shadcn/ui', 'TailwindCSS', 'Zod', 'Groq SDK'],
 					url: {
 						text: 'Visit App',
 						link: 'https://groq-bot.vercel.app/'
-					}
+					},
+					shadow: true,
 				},
 				{
 					name: 'Blogify',
 					description: 'A blogging platform that allows users to create, share, and discover blogs on various topics.',
 					image: './assets/blogify-cover.png',
-					icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747583981/portfolio/blogify-logo.svg',
-					shadow: true,
-					rounded: true,
+					icon: './assets/icons/blogify-logo.svg',
+					stack: ['React', 'React Router', 'Tanstack Query', 'Shadcn/ui', 'TailwindCSS', 'Firebase'],
 					url: {
 						text: 'Visit App',
 						link: 'https://blogify86.vercel.app/'
-					}
+					},
+					shadow: true,
 				},
 				{
 					name: 'Fastpanel',
 					description: 'Simple and powerful server panel – create sites in clicks, manage domains, view live stats, and get 24/7 support with no vendor lock-in.',
 					image: './assets/fastpanel-cover.png',
-					icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747582783/portfolio/fastpanel-logo.svg',
+					icon: './assets/icons/fastpanel-logo.svg',
+					stack: ['HTML', 'TailwindCSS', 'Alpine.js'],
 					url: {
 						text: 'Visit Site',
 						link: 'https://fastpanel.netlify.app/'
@@ -529,17 +555,19 @@
 					name: 'VM-Tycoon',
 					description: 'Built a responsive clone of Vmtycoon.io for a client, matching its main features and design using modern styling tools.',
 					image: './assets/vmtycoon-cover.png',
-					icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747582783/portfolio/vmtycoon-logo.avif',
+					icon: './assets/icons/vmtycoon-logo.avif',
+					stack: ['HTML', 'TailwindCSS', 'JavaScript'],
 					url: {
 						text: 'Visit Site',
 						link: 'https://moashraf86.github.io/VM-Tycoon/'
-					}
+					},
 				},
 				{
 					name: 'MotorsCity',
 					description: 'A platform that connects buyers and sellers of vehicles, providing a seamless experience for both parties.',
 					image: './assets/motorscity-cover.png',
-					icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747582783/portfolio/motorscity-logo.avif',
+					icon: './assets/icons/motorscity-logo.avif',
+					stack: ['HTML', 'SCSS', 'Bootstrap', 'JavaScript'],
 					url: {
 						text: 'Visit Site',
 						link: 'https://moashraf86.github.io/motorsCity/en/'
@@ -549,7 +577,8 @@
 					name: 'StickerYou',
 					description: 'A platform that allows users to create and customize their own stickers, providing a fun and creative outlet for self-expression.',
 					image: './assets/stickeryou-cover.png',
-					icon: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747582783/portfolio/stickeryou-logo.avif',
+					icon: './assets/icons/stickeryou-logo.avif',
+					stack: ['HTML', 'SCSS', 'Bootstrap', 'JavaScript'],
 					url: {
 						text: 'Visit Site',
 						link: 'https://www.stickeryou.com/'
@@ -647,6 +676,11 @@
 					url: 'https://github.com/pmndrs/zustand'
 				},
 				{
+					name: 'Zod',
+					logo: 'https://res.cloudinary.com/daswys0i8/image/upload/v1754242468/zod-logo.svg',
+					url: 'https://zod.dev/'
+				},
+				{
 					name: 'SWR',
 					logo: 'https://res.cloudinary.com/daswys0i8/image/upload/v1747502601/portfolio/swr-logo.svg',
 					url: 'https://swr.vercel.app/'
@@ -655,6 +689,11 @@
 					name: 'Firebase',
 					logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
 					url: 'https://firebase.google.com/'
+				},
+				{
+					name: 'Strapi',
+					logo: 'https://res.cloudinary.com/daswys0i8/image/upload/v1754242283/strapi-logo.svg',
+					url: 'https://strapi.io/'
 				},
 				{
 					name: 'HTML5',
