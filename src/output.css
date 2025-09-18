@@ -778,6 +778,10 @@ video {
   margin-right: auto;
 }
 
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
 .mt-10 {
   margin-top: 2.5rem;
 }
@@ -988,6 +992,10 @@ video {
 
 .grow {
   flex-grow: 1;
+}
+
+.basis-full {
+  flex-basis: 100%;
 }
 
 .table-auto {
@@ -2827,6 +2835,10 @@ video {
   transition-duration: 150ms;
 }
 
+.duration-100 {
+  transition-duration: 100ms;
+}
+
 .duration-150 {
   transition-duration: 150ms;
 }
@@ -2976,6 +2988,10 @@ video {
 
 .slide-out-to-top {
   --tw-exit-translate-y: -100%;
+}
+
+.duration-100 {
+  animation-duration: 100ms;
 }
 
 .duration-150 {
